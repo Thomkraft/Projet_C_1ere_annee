@@ -186,20 +186,3 @@ def interclassement(tab1,tab2,tab3):
     compteur = compteur + 5
     return compteur
 
-
-#Algo pour trié (selection)
-#tab 10 :
-#tab 500 :
-#tab 5000 :
-def tri_fusion(tab):
-    compteur = 0
-    n=len(tab)
-    compteur = compteur +1
-    if n>i:
-        milieu = n/2
-        tri_fusion(tab[:milieu])
-        tri_fusion(tab[milieu:])
-        tab3=empty(int,n)
-        interclassement(tab[:milieu],tab[milieu:],tab3)
-        copie(tab3,tab)
-        compteur = 
