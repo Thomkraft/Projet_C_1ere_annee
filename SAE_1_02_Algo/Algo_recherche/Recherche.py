@@ -201,6 +201,7 @@ def recherche_prem_occ(tab:[int],e:int):
     compteur = compteur + 1
     return compteur
 
+
 #Nombre d'occurence d'un term
 #tab 10 : 42.0
 #tab 500 : 2011.2
@@ -219,12 +220,26 @@ def nbocc(tab:[int],e:int):
         compteur = compteur + 3
     return compteur
 
+#Nombre d'occurence de maniere récursive 
+#tab 10 : 23.2
+#tab 500 : 1011.6
+#tab 5000 : renvoie une erreur car trop de répétition de récurrence
+def nbocc_rec(tab:[int],e:int,i:int = 0,occ:int=0,compteur:int = 2):
+    compteur = compteur + 1
+    if i == len(tab):
+        return occ,compteur
+    compteur = compteur + 1
+    if tab[i] == e:
+        occ = occ + 1
+        compteur = compteur + 2
+
+    return nbocc_rec(tab,e,i+1,occ,compteur)
 
 calcul = 0
 i=0
 
 while i < 10:
-    value = nbocc(tab_10[i],50)
+    occ, value = nbocc_rec(tab_10[i],50)
     calcul = calcul + value
     i = i+1
 print(f"La moyenne d'operation elementaire pour les tableaux a 10 est de : {calcul/10}")
@@ -232,7 +247,7 @@ print(f"La moyenne d'operation elementaire pour les tableaux a 10 est de : {calc
 calcul = 0
 i = 0
 while i < 10:
-    value = nbocc(tab_500[i],50)
+    occ, value = nbocc_rec(tab_500[i],50)
     calcul = calcul + value
     i = i+1
 print(f"La moyenne d'operation elementaire pour les tableaux a 500 est de : {calcul/10}")
@@ -240,7 +255,7 @@ print(f"La moyenne d'operation elementaire pour les tableaux a 500 est de : {cal
 calcul = 0
 i = 0
 while i < 10:
-    value = nbocc(tab_5000[i],50)
+    occ, value = nbocc_rec(tab_5000[i],50)
     calcul = calcul + value
     i = i+1
     

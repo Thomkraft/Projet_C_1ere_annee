@@ -64,125 +64,114 @@ while i < 5000:
     i = i+1
 
 
-#Algo pour trié (selection)
-#tab 10 : 192.2
-#tab 500 : 135 114.4
-#tab 5000 : 12 562 505.0
-
-def tri_par_selec(tab):
+#Meilleur algo pour trier un tableau
+#tab 10 : 261.6
+#tab 500 : 383 163.6
+#tab 5000 : 37 589 478.0
+def tri_selection(tab):
     compteur = 0
-
-    i=0
-    b=0
-    temp=0
-    n=len(tab)
-
-    compteur= compteur + 4
-
-    while i<n:
-        b=i
+    i = 0
+    j=0
+    compteur = 2+compteur
+    while i < len(tab) - 1:
+        min = i
         j=i+1
-        compteur = compteur + 4
-        while j<n:
-            compteur = compteur + 1
-            if tab[b]>tab[j]:
-                b=j
-                compteur =compteur +2
-            j=j+1
-        tab[b]=temp
-        tab[b]=tab[i]
-        tab[i]=temp
-        i=i+1
-        compteur = compteur + 8
-        compteur = compteur + 1
-    compteur = compteur + 1
+        compteur=5+compteur
+        while j < len(tab):
+            compteur+=1
+            if tab[j] < tab[min]:
+                min = j 
+                compteur=compteur+2
+            j+=1
+            compteur=2+compteur
+
+        compteur=1+compteur
+        tmp = tab[i]
+        tab[i] = tab[min]
+        tab[min] = tmp
+        i = i + 1
+        compteur =5+compteur
+
+    compteur=1+compteur
     return compteur
 
 
-#Algo pour trié (selection)
-#tab 10 :
-#tab 500 :
-#tab 5000 :
+#Algo pour trier (selection)
+#tab 10 : 218.4
+#tab 500 : 373 674.0
+#tab 5000 : 37 240 611.6
 def tri_insert(tab):
     compteur = 0
-    l=len(tab)
+    n=len(tab)
     i=1
     compteur = compteur + 2
-    while i<l:
-        tri_insert(tab[:i+1],tab[i])
-        i=i+1
+    while i<n:
+
+        k = tab[i]
+        j = i - 1
+        compteur = compteur + 4
+        while j >= 0 and k < tab[j]:
+            
+            tab[j+1] = tab[j]
+            j=j-1
+            compteur = compteur + 6
+        compteur = compteur + 1
+        tab[j+1] = k
+        i = i+1
         compteur = compteur + 4
     compteur = compteur + 1
     return compteur
 
-
-#Algo pour trié (selection)
-#tab 10 :
-#tab 500 :
-#tab 5000 :
+#Algo pour trier (a bulles)
+#tab 10 : 356.8
+#tab 500 : 1 055 814.7
+#tab 5000 : 94 706 849.8
 def tri_a_bulles(tab):
     compteur = 0
-    l=len(tab)-1
-    tri=False
-    compteur = compteur + 3
+    n=len(tab)-1
+    compteur = compteur + 2
 
-    while l>0 and tri==False:
+    while n>0:
         i=0
-        Tri=True
-        compteur = compteur + 5
-        while i>l:
+        compteur = compteur + 2
+        while i<n:
             compteur = compteur + 1
             if tab[i]>tab[i+1]:
                 tmp=tab[i]
                 tab[i]=tab[i+1]
                 tab[i+1]=tmp
-                tri=False
-                compteur = compteur + 8
+                compteur = compteur + 7
             i=i+1
-            compteur = compteur + 2
-        l=l-1
-        compteur = compteur + 2
-    comteur = compteur + 1
-
-
-#Algo pour trié (selection)
-#tab 10 :
-#tab 500 :
-#tab 5000 :
-def insere_trie(tab,v):
-    compteur = 0
-    j=len(tab)-2
-    compteur = compteur + 2
-    while v<tab[j] and j>=0:
-        tab[j]=tab[j+1]
-        j=j-1
-        compteur = compteur + 7 
-    tab[j+1]=v
-    compteur = compteur + 3
-    return compteur
-
-
-#Algo pour trié (selection)
-#tab 10 :
-#tab 500 :
-#tab 5000 :
-def interclassement(tab1,tab2,tab3):
-    compteur = 0
-    i,j,k=0
-    taillei=len(tab1)
-    taillej=len(tab2)
-    compteur = compteur + 5
-    while i<taillei and j<taillej:
+            compteur = compteur + 3
+        n=n-1
         compteur = compteur + 3
-        if tab1[i]<=tab2[j]:
-            tab3[k]=tab1[i]
-            i=i+1
-            k=k+1
-            compteur = compteur + 6 
-        else :
-            tab3[k]=tab2[j]
-            j=j+1
-            k=k+1
-    compteur = compteur + 5
+    compteur = compteur + 1
     return compteur
+
+
+calcul = 0
+i=0
+
+while i < 10:
+    value = tri_insert(tab_10[i])
+    calcul = calcul + value
+    i = i+1
+print(f"La moyenne d'operation elementaire pour les tableaux a 10 est de : {calcul/10}")
+
+calcul = 0
+i = 0
+while i < 10:
+    value = tri_insert(tab_500[i])
+    calcul = calcul + value
+    i = i+1
+print(f"La moyenne d'operation elementaire pour les tableaux a 500 est de : {calcul/10}")
+
+calcul = 0
+i = 0
+while i < 10:
+    value = tri_insert(tab_5000[i])
+    calcul = calcul + value
+    i = i+1
+    
+print(f"La moyenne d'operation elementaire pour les tableaux a 5000 est de : {calcul/10}")
 
