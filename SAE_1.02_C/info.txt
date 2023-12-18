@@ -1,0 +1,6 @@
+Vols tab[50]
+
+tab[0].numéro = col 0 ligne 1
+tab[0].Heure debut = col 1 ligne 1
+
+ect

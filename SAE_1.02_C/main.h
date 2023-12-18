@@ -4,13 +4,13 @@
  * \author Thomas K,Aurelien P, Guillaume F
  * \version 1.0
  * \date 30/11/23
-*/  
+*/
 
 #include <stdio.h>  
 #include <stdlib.h>
 #include <string.h>
 
-
+#define NB_ELEMENT 10000
 
 void get_excl();
 
@@ -22,11 +22,27 @@ int choice;
 typedef struct Passager Passager;
 typedef struct Vols Vols;
 
+
+
+
+//Définit les valeurs de la structure Passager
+struct Passager {
+    char nom[30];
+    char prenom[30];
+
+    char date_naissance[30];
+
+    int num_siege;
+
+    char prix[10];
+
+};
+
 //Définit les valeurs de la structure Vols
 struct Vols{
     int numero;
-    char* compagnie;
-    char* destination;
+    char compagnie[30];
+    char destination[30];
 
     int num_comptoir;
     int debut_enregistrement;
@@ -37,18 +53,12 @@ struct Vols{
     int fin_embarquement;
 
     int heure_decollage;
-    char* etat_vol;
-    char* liste_passager;
+    char etat_vol[30];
 
-};
+    int nombre_passagers;
 
-//Définit les valeurs de la structure Passager
-struct Passager {
-    char* nom;
-    char* prenom;
+    //Structure passager dans la structure Vols pour pouvoir différencier un passager d'indice 1 suivant le vol
+    //30 étant le nombre maximum de passager pouvant etre dans le vol
+    Passager Passager_vols[30];
 
-    char* date_naissance;
-
-    int num_siege;
-    int prix;
 };
