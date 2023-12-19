@@ -12,8 +12,6 @@
 
 #define NB_ELEMENT 10000
 
-void get_excl();
-
 
 int choice;
 
@@ -62,3 +60,6 @@ struct Vols{
     Passager Passager_vols[30];
 
 };
+
+void get_excl(struct Vols[],int*);
+void affichage(struct Vols[],int);

@@ -18,13 +18,20 @@
 */
 int main()
 {
-    //déclaration des variable
 
+    //déclaration des variable
+    int nb_vols = 0;
+
+    int* pt_nb_vols = &nb_vols;
+
+    struct Vols tabVols[40];
 
     //Appel de la fonction procédur get_excel pour remplir le tableau de structure
-    get_excl();
+    get_excl(tabVols,pt_nb_vols);
+    affichage(tabVols,nb_vols);
+    
 
-
+    /*
 
     //Boucle pour choisir l'option voulue
     do {
@@ -61,7 +68,7 @@ int main()
 
 
     } while (choice != 0);
-
+    */
 
     return 0;
 
