@@ -8,7 +8,7 @@
 
 //Importation du fichier main.h qui contient toutes les déclaration de variable
 #include "main.h"
-#include "fonction.c"
+#include "structure.c"
 
 /**
  * \fn int main()

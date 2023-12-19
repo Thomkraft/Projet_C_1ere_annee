@@ -1,5 +1,5 @@
 /**
- * \file fonction.c
+ * \file structure.c
  * \brief descriptions des différentes fonctions
  * \author Thomas K,Aurelien P, Guillaume F
  * \version 1.0
