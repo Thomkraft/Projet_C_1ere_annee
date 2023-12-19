@@ -1,6 +1,7 @@
 import random
 
 #Création des tables
+#Thomas k
 tab1_10 = []
 tab2_10 = []
 tab3_10 = []
@@ -39,6 +40,7 @@ tab_500 = [tab1_500,tab2_500,tab3_500,tab4_500,tab5_500,tab6_500,tab7_500,tab8_5
 tab_5000 = [tab1_5000,tab2_5000,tab3_5000,tab4_5000,tab5_5000,tab6_5000,tab7_5000,tab8_5000,tab9_5000,tab10_5000]
 
 #Insertion des valeurs dans les tables
+#Thomas K
 i=0
 while i < 10:
     j=0
@@ -72,6 +74,7 @@ while i < 5000:
 #tab 10 : 261.6
 #tab 500 : 383 163.6
 #tab 5000 : 37 589 478.0
+#Guillaume / Aurelien
 def tri_selection(tab):
     compteur = 0
     i = 0
@@ -104,6 +107,7 @@ def tri_selection(tab):
 #tab 10 : 218.4
 #tab 500 : 373 674.0
 #tab 5000 : 37 240 611.6
+#Guillaume / Aurelien
 def tri_insert(tab):
     compteur = 0
     n=len(tab)
@@ -130,6 +134,7 @@ def tri_insert(tab):
 #tab 10 : 356.8
 #tab 500 : 1 055 814.7
 #tab 5000 : 94 706 849.8
+#Guillaume / Aurelien
 def tri_a_bulles(tab):
     compteur = 0
     n=len(tab)-1
@@ -192,6 +197,7 @@ def interclassement(tab1, tab2, tab3):
 #tab 10 : 356.4
 #tab 500 : 35 275.2
 #tab 5000 : 454 171.2
+# Guillaume / Aurelien / Thomas k
 def tri_fusion(tab):
     compteur = 0
     n = len(tab)
@@ -218,6 +224,7 @@ def tri_fusion(tab):
 #tab 10 : 21
 #tab 500 : 55.1
 #tab 5000 : 56.7
+#Thomas k
 def recherche_dicho(tab:[int],e:int):
     compteur=0
 
@@ -256,6 +263,7 @@ def recherche_dicho(tab:[int],e:int):
 #tab 10 :31.0
 #tab 500 : 75.4
 #tab 5000 : 80
+#Thomas k 
 def recherche_dicho_rec(tab,e):
     compteur = 0
     n=len(tab)
@@ -300,6 +308,7 @@ def recherche_dicho_rec(tab,e):
 #tab 10 : 60.0
 #tab 500 : 2969.8
 #tab 5000 : 29 690.8
+#Thomas k
 def recherche_prem_occ(tab:[int],e:int):
     compteur = 0
     n=len(tab)
@@ -320,6 +329,7 @@ def recherche_prem_occ(tab:[int],e:int):
 #tab 10 : 42.0
 #tab 500 : 2011.2
 #tab 5000 : 20 098.2
+#Thomas k
 def nbocc(tab:[int],e:int):
     compteur = 0
     i=0
@@ -338,6 +348,7 @@ def nbocc(tab:[int],e:int):
 #tab 10 : 23.2
 #tab 500 : 1009.8
 #tab 5000 : renvoie une erreur car trop de répétition de récurrence
+#Thomas K
 def nbocc_rec(tab:[int],e:int,i:int = 0,occ:int=0,compteur:int = 2):
     compteur = compteur + 1
     if i == len(tab):
@@ -350,6 +361,7 @@ def nbocc_rec(tab:[int],e:int,i:int = 0,occ:int=0,compteur:int = 2):
     return nbocc_rec(tab,e,i+1,occ,compteur)
 
 #On trie tous les tableaux
+#Thomas / Aurelien
 i=0
 while i < 10:
     tab_10[i],_ = tri_fusion(tab_10[i])
@@ -360,6 +372,7 @@ while i < 10:
 
 #Nous allons supposer prendre la derniere valeur possible a trouver dans un tableau trié pour calculer la
 #moyenne du nombre maximum dopération élémentaire dans notre cas la valeur max possible est 100
+#Thomas / Aurelien / Guillaume
 calcul = 0
 i=0
 
