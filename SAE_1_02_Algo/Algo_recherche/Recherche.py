@@ -65,44 +65,75 @@ while i < 5000:
     i = i+1
 
 
+#On supoera que tout les algo de recherche prennent en parametre un tableau deja trié pour
+#calculer uniquement la compléxité de lalgo de recherche et non recherche + trie
 
-#Meilleur algo pour trier un tableau
-#tab 10 : 261.6
-#tab 500 : 383 163.6
-#tab 5000 : 37 589 478.0
-def tri_selection(tab):
+def interclassement(tab1, tab2, tab3):
     compteur = 0
-    i = 0
-    j=0
-    compteur = 2+compteur
-    while i < len(tab) - 1:
-        min = i
-        j=i+1
-        compteur=5+compteur
-        while j < len(tab):
-            compteur+=1
-            if tab[j] < tab[min]:
-                min = j 
-                compteur=compteur+2
-            j+=1
-            compteur=2+compteur
+    i, j, k = 0, 0, 0
+    taillei, taillej = len(tab1), len(tab2)
 
-        compteur=1+compteur
-        tmp = tab[i]
-        tab[i] = tab[min]
-        tab[min] = tmp
+    compteur = compteur + 8
+
+    while i < taillei and j < taillej:
+        compteur = compteur + 1
+        if tab1[i] <= tab2[j]:
+            tab3[k] = tab1[i]
+            i = i + 1
+            compteur = compteur + 3
+        else:
+            tab3[k] = tab2[j]
+            j = j + 1
+            compteur = compteur + 3
+        k = k + 1
+        compteur = compteur + 2
+
+    compteur = compteur + 1
+    while i < taillei:
+        tab3[k] = tab1[i]
         i = i + 1
-        compteur =5+compteur
+        k = k + 1
+        compteur = compteur + 5
 
-    compteur=1+compteur
+    compteur = compteur + 1
+    while j < taillej:
+        tab3[k] = tab2[j]
+        j = j + 1
+        k = k + 1
+        compteur = compteur + 5
+
     return compteur
 
+#Algo de tri fusion ainsi que l'interclassement réunis ( meilleur algo de trie )
+#tab 10 : 356.4
+#tab 500 : 35 275.2
+#tab 5000 : 454 171.2
+def tri_fusion(tab):
+    compteur = 0
+    n = len(tab)
+    compteur = compteur + 2
+    if n > 1:
+        millieu = n // 2
+
+        tab1 = tab[:millieu]
+        tab2 = tab[millieu:]
+        compteur = compteur + 4
+
+        tab1,compteur_rec = tri_fusion(tab1)
+        compteur = compteur + compteur_rec
+        tab2, compteur_rec = tri_fusion(tab2)
+        compteur = compteur + compteur_rec
+
+        compteur_rec = interclassement(tab1, tab2, tab)
+        compteur = compteur + compteur_rec
+
+    return tab,compteur
 
 #Algo pour rechercher un nom de compagnie ou la destination
 #Recherche par dichotomie
 #tab 10 : 21
-#tab 500 : 63.6
-#tab 5000 : 83.8
+#tab 500 : 55.1
+#tab 5000 : 56.7
 def recherche_dicho(tab:[int],e:int):
     compteur=0
 
@@ -131,16 +162,16 @@ def recherche_dicho(tab:[int],e:int):
 
             ind = millieu
             compteur = 3 + compteur
-            return compteur
+            return ind,compteur
         
     compteur = 1 + compteur
 
-    return compteur
+    return ind,compteur
 
 #Recherche dicho récursive
-#tab 10 :33.8
-#tab 500 : 79.0
-#tab 5000 : 100.2
+#tab 10 :31.0
+#tab 500 : 75.4
+#tab 5000 : 80
 def recherche_dicho_rec(tab,e):
     compteur = 0
     n=len(tab)
@@ -183,9 +214,9 @@ def recherche_dicho_rec(tab,e):
 
 #Tri par recherche pour trouver l'indice de la premiere ocurence
 #ou tri linéaire
-#tab 10 : 55.0
-#tab 500 : 571.0
-#tab 5000 : 1 182.4
+#tab 10 : 60.0
+#tab 500 : 2969.8
+#tab 5000 : 29 690.8
 def recherche_prem_occ(tab:[int],e:int):
     compteur = 0
     n=len(tab)
@@ -222,7 +253,7 @@ def nbocc(tab:[int],e:int):
 
 #Nombre d'occurence de maniere récursive 
 #tab 10 : 23.2
-#tab 500 : 1011.6
+#tab 500 : 1009.8
 #tab 5000 : renvoie une erreur car trop de répétition de récurrence
 def nbocc_rec(tab:[int],e:int,i:int = 0,occ:int=0,compteur:int = 2):
     compteur = compteur + 1
@@ -235,11 +266,22 @@ def nbocc_rec(tab:[int],e:int,i:int = 0,occ:int=0,compteur:int = 2):
 
     return nbocc_rec(tab,e,i+1,occ,compteur)
 
+#On trie tous les tableaux
+i=0
+while i < 10:
+    tab_10[i],_ = tri_fusion(tab_10[i])
+    tab_500[i],_ = tri_fusion(tab_500[i])
+    tab_5000[i],_ = tri_fusion(tab_5000[i])
+    i=i+1
+
+
+#Nous allons supposer prendre la derniere valeur possible a trouver dans un tableau trié pour calculer la
+#moyenne du nombre maximum dopération élémentaire dans notre cas la valeur max possible est 100
 calcul = 0
 i=0
 
 while i < 10:
-    occ, value = nbocc_rec(tab_10[i],50)
+    occ, value = recherche_dicho(tab_10[i],100)
     calcul = calcul + value
     i = i+1
 print(f"La moyenne d'operation elementaire pour les tableaux a 10 est de : {calcul/10}")
@@ -247,7 +289,7 @@ print(f"La moyenne d'operation elementaire pour les tableaux a 10 est de : {calc
 calcul = 0
 i = 0
 while i < 10:
-    occ, value = nbocc_rec(tab_500[i],50)
+    occ, value = recherche_dicho(tab_500[i],100)
     calcul = calcul + value
     i = i+1
 print(f"La moyenne d'operation elementaire pour les tableaux a 500 est de : {calcul/10}")
@@ -255,7 +297,7 @@ print(f"La moyenne d'operation elementaire pour les tableaux a 500 est de : {cal
 calcul = 0
 i = 0
 while i < 10:
-    occ, value = nbocc_rec(tab_5000[i],50)
+    occ, value = recherche_dicho(tab_5000[i],100)
     calcul = calcul + value
     i = i+1
     
