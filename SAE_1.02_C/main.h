@@ -19,7 +19,7 @@ int choice;
 
 typedef struct Passager Passager;
 typedef struct Vols Vols;
-
+typedef struct Informations Informations;
 
 
 
@@ -61,5 +61,8 @@ struct Vols{
 
 };
 
+
 void get_excl(struct Vols[],int*);
+void recherche_comp(struct Vols[],int,char[]);
+void recherche_panel(struct Vols[],int);
 void affichage(struct Vols[],int);

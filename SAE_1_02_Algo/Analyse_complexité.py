@@ -234,7 +234,7 @@ def recherche_dicho(tab:[int],e:int):
 
     compteur = 4 + compteur
 
-    while deb < fin:
+    while deb <= fin:
         millieu = (fin + deb) //2
 
         compteur = 4 + compteur
@@ -372,7 +372,7 @@ while i < 10:
 
 #Nous allons supposer prendre la derniere valeur possible a trouver dans un tableau trié pour calculer la
 #moyenne du nombre maximum dopération élémentaire dans notre cas la valeur max possible est 100
-#Thomas / Aurelien / Guillaume
+#Thomas / Aurelien / Guillaume  
 calcul = 0
 i=0
 

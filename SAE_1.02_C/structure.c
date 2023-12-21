@@ -1,7 +1,7 @@
 /**
  * \file structure.c
- * \brief descriptions des différentes fonctions
- * \author Thomas K,Aurelien P, Guillaume F
+ * \brief fichier pour récuperer les donnée de l'excel
+ * \author Thomas K
  * \version 1.0
  * \date 30/11/23
 */
@@ -24,6 +24,7 @@ void get_excl(struct Vols tabVols[],int* nb_vols) {
 
 
     int nb_ligne = 0;
+    int i;
 
     char contenue[NB_ELEMENT];
 
@@ -42,9 +43,8 @@ void get_excl(struct Vols tabVols[],int* nb_vols) {
     if (pointeur_de_fichier == NULL) {
         printf("\nL'ouverture du fichier en lecture du fichier %s a echoue. \n",nom_fichier);
     } else {
-        //
-        //Mettre un fgets ici pour pour sauter la 1ere ligne
-        //
+        
+        //Saute la 1ere ligne du fichier pour eviter de remplir notre structure avec les nom des collonnes
         if (fgets(contenue,sizeof(contenue),pointeur_de_fichier) == NULL) {
             printf("Erreur lors de l'ouverture du fichier");
         } else {

@@ -9,6 +9,9 @@
 //Importation du fichier main.h qui contient toutes les déclaration de variable
 #include "main.h"
 #include "structure.c"
+#include "Recherche_compagnie.c"
+#include "choix.c"
+
 
 /**
  * \fn int main()
@@ -21,6 +24,10 @@ int main()
 
     //déclaration des variable
     int nb_vols = 0;
+    int choix_de_recherche;
+
+    int buffer[256];
+
 
     int* pt_nb_vols = &nb_vols;
 
@@ -28,10 +35,11 @@ int main()
 
     //Appel de la fonction procédur get_excel pour remplir le tableau de structure
     get_excl(tabVols,pt_nb_vols);
-    affichage(tabVols,nb_vols);
-    
+    //affichage(tabVols,nb_vols);
+    //recherche_comp(tabVols,pt_nb_vols,"Emirates");
 
-    /*
+
+    
 
     //Boucle pour choisir l'option voulue
     do {
@@ -51,25 +59,48 @@ int main()
 
         //recupère le choix de l'utilisateur
         printf("\nVeuillez, s'il vous plait, saisir votre choix : ");
-        scanf("%d",&choice);
+
+        // Lecture de la ligne d'entrée
+        if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
+            // Gestion d'une erreur de saisie
+            choice = -1;  // Réinitialise choice à une valeur non valide
+        } else {
+            // Convertit la saisie en un entier
+            if (sscanf(buffer, "%d", &choice) != 1) {
+                // Gestion d'une erreur de conversion
+                choice = -1;  // Réinitialise choice à une valeur non valide
+            }
+        }
+
         switch (choice)
         {
         case 0:
-            printf("\nFin du programme\n");
+            printf("\nFin du programme\n\n");
             return 0;
         case 1:
-            printf("test\n");
+            //fonction affichage
+            break;
+        case 2:
+            printf("\n\n");
+
+            recherche_panel(tabVols,nb_vols);
+            break;
+        case 3:
+            //fonction d'affichge
+            break;
+        case 4:
+            //fonction de changement d'heure
             break;
 
         default:
-            printf("\nerreur de valeur merci de recommencer !\n");
+            printf("\nerreur de valeur merci de recommencer !\n\n");
             break;
         }
 
 
     } while (choice != 0);
-    */
 
+    
     return 0;
 
 }
