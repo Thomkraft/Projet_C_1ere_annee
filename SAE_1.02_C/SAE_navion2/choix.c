@@ -4,7 +4,7 @@
 
 /**
  * \file choix.c
- * \brief 
+ * \brief
  * \author Thomas K
  * \version 1.0
  * \date 30/11/23
@@ -13,7 +13,7 @@
 #include "main.h"
 
 /**
- * \fn Fonction procÃ©dure Recherche_comp()
+ * \fn Fonction procédure Recherche_comp()
  * \brief recherche les vols contenant le nom de la compagnie voulue
  *
  * \author Thomas k,Guillaume F
@@ -26,9 +26,9 @@ void recherche_panel(struct Vols tabVols[],int nb_vols) {
     char value[NB_ELEMENT];
 
     char buffer[256];
-    
+
     do{
-        //affiche les diffÃ©rents choix possibles
+        //affiche les différents choix possibles
         printf("**********************************************\n");
         printf("* Choisissez votre option De recherche       *\n");
         printf("**********************************************\n");
@@ -41,15 +41,15 @@ void recherche_panel(struct Vols tabVols[],int nb_vols) {
         printf("\nVeuillez, s'il vous plait, saisir votre choix : ");
 
 
-        // Lecture de la ligne d'entrÃ©e
+        // Lecture de la ligne d'entrée
         if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
             // Gestion d'une erreur de saisie
-            choice = -1;  // RÃ©initialise choice Ã  une valeur non valide
+            choice = -1;  // Réinitialise choice à une valeur non valide
         } else {
             // Convertit la saisie en un entier
             if (sscanf(buffer, "%d", &choice) != 1) {
                 // Gestion d'une erreur de conversion
-                choice = -1;  // RÃ©initialise choice Ã  une valeur non valide
+                choice = -1;  // Réinitialise choice à une valeur non valide
             }
         }
         printf("\n");
@@ -72,12 +72,12 @@ void recherche_panel(struct Vols tabVols[],int nb_vols) {
         case 3:
             //fonction par heure de decollage
             break;
-        
+
         default:
             printf("\nerreur de valeur merci de recommencer !\n\n");
             break;
         }
-        
+
 
     }while (choice != 0);
 }

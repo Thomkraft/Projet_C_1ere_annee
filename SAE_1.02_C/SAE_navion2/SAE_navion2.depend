@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1703230238 source:c:\users\thoma\documents\iut\1ère_année\2.saé_s1.02\sae_1.02_c\sae_navion2\choix.c
+	"main.h"
+
+1703230263 c:\users\thoma\documents\iut\1ère_année\2.saé_s1.02\sae_1.02_c\sae_navion2\main.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1703230156 source:c:\users\thoma\documents\iut\1ère_année\2.saé_s1.02\sae_1.02_c\sae_navion2\main.c
+	"main.h"
+
+1703230248 source:c:\users\thoma\documents\iut\1ère_année\2.saé_s1.02\sae_1.02_c\sae_navion2\recherche_compagnie.c
+	"main.h"
+
+1703230255 source:c:\users\thoma\documents\iut\1ère_année\2.saé_s1.02\sae_1.02_c\sae_navion2\structure.c
+	"main.h"
+

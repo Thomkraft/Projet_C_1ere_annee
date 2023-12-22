@@ -1,6 +1,6 @@
 /**
  * \file structure.c
- * \brief fichier pour rÃ©cuperer les donnÃ©e de l'excel
+ * \brief fichier pour récuperer les donnée de l'excel
  * \author Thomas K
  * \version 1.0
  * \date 30/11/23
@@ -9,7 +9,7 @@
 #include "main.h"
 
 /**
- * \fn fonction procÃ©dur : void get_excel()
+ * \fn fonction procédur : void get_excel()
  * \brief recupere les valeurs du fichier .csv et les met dans un tableau de structure
  *
  * \author Thomas k
@@ -17,10 +17,10 @@
 
 
 
-//dÃ©claration de la fonction procÃ©dure
+//déclaration de la fonction procédure
 void get_excl(struct Vols tabVols[],int* nb_vols) {
 
-    //dÃ©finition des diffÃ©rentes variables et pointeur
+    //définition des différentes variables et pointeur
     char* nom_fichier="data_vols.csv";
     FILE* pointeur_de_fichier = NULL;
     char * charactere_lu;
@@ -31,33 +31,33 @@ void get_excl(struct Vols tabVols[],int* nb_vols) {
 
     char contenue[NB_ELEMENT];
 
-    //DÃ©finition deu tableau de structure tabVols
+    //Définition deu tableau de structure tabVols
 
     char liste_passager_all[400][500];
 
-    //int ligne dÃ©finis a -1 pour sauter la 1ere ligne du tableau et rester a l'indice 0 pour les 1ere valeurs
+    //int ligne définis a -1 pour sauter la 1ere ligne du tableau et rester a l'indice 0 pour les 1ere valeurs
     int lignes = 0;
     int collonnes = 0;
 
     //ouverture du chier data_vols.csv
     pointeur_de_fichier = fopen(nom_fichier, "r");
 
-    //VÃ©rification si erreur lors de l'ouverture du fichier
+    //Vérification si erreur lors de l'ouverture du fichier
     if (pointeur_de_fichier == NULL) {
         printf("\nL'ouverture du fichier en lecture du fichier %s a echoue. \n",nom_fichier);
     } else {
-        
+
         //Saute la 1ere ligne du fichier pour eviter de remplir notre structure avec les nom des collonnes
         if (fgets(contenue,sizeof(contenue),pointeur_de_fichier) == NULL) {
             printf("Erreur lors de l'ouverture du fichier");
         } else {
-        
+
             //Boucle pour lire chaque ligne une par une
             while (fgets(contenue,sizeof(contenue),pointeur_de_fichier) != NULL){
 
                 //condition pour sauter la 1ere ligne du fichier
 
-                //SÃ©pare la ligne par les ',' et les diffÃ©rents passagers par '"'
+                //Sépare la ligne par les ',' et les différents passagers par '"'
                 sscanf(contenue,"%d,%[^,],%[^,],%d,%d,%d,%d,%d,%d,%d,%[^,],\"%[^\"]",
                 //remplie les information du vol a la ligne X
                 &tabVols[lignes].numero,
@@ -77,8 +77,8 @@ void get_excl(struct Vols tabVols[],int* nb_vols) {
 
                 );
 
-                //RÃ©cupere la liste des passagers de la ligne X et la coupe par les ';'
-                //Pour obtenir les informations de chaque passager sÃ©parement
+                //Récupere la liste des passagers de la ligne X et la coupe par les ';'
+                //Pour obtenir les informations de chaque passager séparement
                 char *passagerToken = strtok(liste_passager_all[lignes],";");
 
                 //Permet de compter le nombre de passager pour le vol
@@ -92,7 +92,7 @@ void get_excl(struct Vols tabVols[],int* nb_vols) {
 
                     //stock dans la structure passager les information du passager Y pour le vol X
                     //Car il y a plusieur passager pour le vol X
-                    //grace a cela plusieurs passager peuvent avoir l'indice 0 ou 1 ect car ils dÃ©pendent Ã©galement su numÃ©ro du vol
+                    //grace a cela plusieurs passager peuvent avoir l'indice 0 ou 1 ect car ils dépendent également su numéro du vol
                     tabVols[lignes].Passager_vols[tabVols[lignes].nombre_passagers].nom,
                     tabVols[lignes].Passager_vols[tabVols[lignes].nombre_passagers].prenom,
                     tabVols[lignes].Passager_vols[tabVols[lignes].nombre_passagers].date_naissance,
@@ -106,7 +106,7 @@ void get_excl(struct Vols tabVols[],int* nb_vols) {
                     passagerToken = strtok(NULL, ";");
                 }
 
-                
+
 
                 //passe a la ligne suivante
                 lignes++;

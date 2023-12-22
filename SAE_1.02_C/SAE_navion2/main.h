@@ -1,25 +1,25 @@
 /**
  * \file main.u
- * \brief importation des diffÃ©rentes fonctions
+ * \brief importation des différentes fonctions
  * \author Thomas K,Aurelien P, Guillaume F
  * \version 1.0
  * \date 30/11/23
 */
 
-#include <stdio.h>  
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #define NB_ELEMENT 10000
 
 
-//DÃ©finis les structure Vols et Passager
+//Définis les structure Vols et Passager
 
 typedef struct Passager Passager;
 typedef struct Vols Vols;
 
 
-//DÃ©finit les valeurs de la structure Passager
+//Définit les valeurs de la structure Passager
 struct Passager {
     char nom[30];
     char prenom[30];
@@ -32,7 +32,7 @@ struct Passager {
 
 };
 
-//DÃ©finit les valeurs de la structure Vols
+//Définit les valeurs de la structure Vols
 struct Vols{
     int numero;
     char compagnie[30];
@@ -51,8 +51,8 @@ struct Vols{
 
     int nombre_passagers;
 
-    //Structure passager dans la structure Vols pour pouvoir diffÃ©rencier un passager d'indice 1 suivant le vol
-    //30 Ã©tant le nombre maximum de passager pouvant etre dans le vol
+    //Structure passager dans la structure Vols pour pouvoir différencier un passager d'indice 1 suivant le vol
+    //30 étant le nombre maximum de passager pouvant etre dans le vol
     Passager Passager_vols[30];
 
 };

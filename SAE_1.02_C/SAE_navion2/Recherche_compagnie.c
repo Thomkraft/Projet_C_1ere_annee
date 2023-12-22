@@ -9,7 +9,7 @@
 #include "main.h"
 
 /**
- * \fn Fonction procÃ©dure Recherche_comp()
+ * \fn Fonction procédure Recherche_comp()
  * \brief recherche les vols contenant le nom de la compagnie voulue
  *
  * \author Thomas k
