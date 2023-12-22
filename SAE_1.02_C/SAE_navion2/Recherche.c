@@ -19,6 +19,7 @@ void recherche_comp(struct Vols tabVols[],int nbvols,char name_compagnie[]) {
     int i;
     int j = 0;
 
+
     printf("-----------------------------------------------------------------------------------------------------------------------------------------\n");
     printf("| No |       Compagnie      |      Destination     | No comp | deb enr | fin enr | salle emb | deb emb | fin emb |      etat vols       |\n");
     printf("-----------------------------------------------------------------------------------------------------------------------------------------\n");
