@@ -21,7 +21,7 @@
 void get_excl(struct Vols tabVols[],int* nb_vols) {
 
     //définition des différentes variables et pointeur
-    char* nom_fichier="data_vols.csv";
+    char* nom_fichier="./data_vols.csv";
     FILE* pointeur_de_fichier = NULL;
     char * charactere_lu;
 
