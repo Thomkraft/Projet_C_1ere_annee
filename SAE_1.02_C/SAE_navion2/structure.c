@@ -1,6 +1,6 @@
 /**
  * \file structure.c
- * \brief fichier pour récuperer les donnée de l'excel
+ * \brief fichier pour rï¿½cuperer les donnï¿½e de l'excel
  * \author Thomas K
  * \version 1.0
  * \date 30/11/23
@@ -9,7 +9,7 @@
 #include "main.h"
 
 /**
- * \fn fonction procédur : void get_excel()
+ * \fn fonction procï¿½dur : void get_excel()
  * \brief recupere les valeurs du fichier .csv et les met dans un tableau de structure
  *
  * \author Thomas k
@@ -17,10 +17,10 @@
 
 
 
-//déclaration de la fonction procédure
+//dï¿½claration de la fonction procï¿½dure
 void get_excl(struct Vols tabVols[],int* nb_vols) {
 
-    //définition des différentes variables et pointeur
+    //dï¿½finition des diffï¿½rentes variables et pointeur
     char* nom_fichier="./data_vols.csv";
     FILE* pointeur_de_fichier = NULL;
     char * charactere_lu;
@@ -31,18 +31,18 @@ void get_excl(struct Vols tabVols[],int* nb_vols) {
 
     char contenue[NB_ELEMENT];
 
-    //Définition deu tableau de structure tabVols
+    //Dï¿½finition deu tableau de structure tabVols
 
     char liste_passager_all[400][500];
 
-    //int ligne définis a -1 pour sauter la 1ere ligne du tableau et rester a l'indice 0 pour les 1ere valeurs
+    //int ligne dï¿½finis a -1 pour sauter la 1ere ligne du tableau et rester a l'indice 0 pour les 1ere valeurs
     int lignes = 0;
     int collonnes = 0;
 
     //ouverture du chier data_vols.csv
     pointeur_de_fichier = fopen(nom_fichier, "r");
 
-    //Vérification si erreur lors de l'ouverture du fichier
+    //Vï¿½rification si erreur lors de l'ouverture du fichier
     if (pointeur_de_fichier == NULL) {
         printf("\nL'ouverture du fichier en lecture du fichier %s a echoue. \n",nom_fichier);
     } else {
@@ -57,7 +57,7 @@ void get_excl(struct Vols tabVols[],int* nb_vols) {
 
                 //condition pour sauter la 1ere ligne du fichier
 
-                //Sépare la ligne par les ',' et les différents passagers par '"'
+                //Sï¿½pare la ligne par les ',' et les diffï¿½rents passagers par '"'
                 sscanf(contenue,"%d,%[^,],%[^,],%d,%d,%d,%d,%d,%d,%d,%[^,],\"%[^\"]",
                 //remplie les information du vol a la ligne X
                 &tabVols[lignes].numero,
@@ -77,8 +77,8 @@ void get_excl(struct Vols tabVols[],int* nb_vols) {
 
                 );
 
-                //Récupere la liste des passagers de la ligne X et la coupe par les ';'
-                //Pour obtenir les informations de chaque passager séparement
+                //Rï¿½cupere la liste des passagers de la ligne X et la coupe par les ';'
+                //Pour obtenir les informations de chaque passager sï¿½parement
                 char *passagerToken = strtok(liste_passager_all[lignes],";");
 
                 //Permet de compter le nombre de passager pour le vol
@@ -92,7 +92,7 @@ void get_excl(struct Vols tabVols[],int* nb_vols) {
 
                     //stock dans la structure passager les information du passager Y pour le vol X
                     //Car il y a plusieur passager pour le vol X
-                    //grace a cela plusieurs passager peuvent avoir l'indice 0 ou 1 ect car ils dépendent également su numéro du vol
+                    //grace a cela plusieurs passager peuvent avoir l'indice 0 ou 1 ect car ils dï¿½pendent ï¿½galement su numï¿½ro du vol
                     tabVols[lignes].Passager_vols[tabVols[lignes].nombre_passagers].nom,
                     tabVols[lignes].Passager_vols[tabVols[lignes].nombre_passagers].prenom,
                     tabVols[lignes].Passager_vols[tabVols[lignes].nombre_passagers].date_naissance,
@@ -133,24 +133,3 @@ void get_excl(struct Vols tabVols[],int* nb_vols) {
     printf("Nom dun passager hors de la liste : %s",tabVols[0].Passager_vols[5].nom);
     */
 }
-
-
-void affichage(struct Vols tabVols[],int nb_vols){
-
-
-    //printf("Numero de vol : %d\n",tabVols[2].numero);
-    //printf("Nom de la compagnie : %s\n",tabVols[1].compagnie);
-    printf("Nom de la destination : %s\n\n",tabVols[0].destination);
-    //printf("Numero du comptoir : %d\n",tabVols[1].num_comptoir);
-
-    printf("Prenom du passager 0 du vol 0 : %s\n",tabVols[0].Passager_vols[1].prix);
-
-    printf("Nombre de passager sur le vol 0 : %d\n\n", tabVols[0].nombre_passagers);
-
-    printf("Nom dun passager hors de la liste : %s\n",tabVols[0].Passager_vols[2].nom);
-
-    printf("Le nombre de vols est de : %d", nb_vols);
-
-}
-
-

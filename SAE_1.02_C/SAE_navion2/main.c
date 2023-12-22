@@ -1,12 +1,12 @@
 /**
  * \file main.c
- * \brief Gestion des vols commerciaux l'aéroport de Grenoble
+ * \brief Gestion des vols commerciaux l'aï¿½roport de Grenoble
  * \author Thomas K,Aurelien P, Guillaume F
  * \version 1.0
  * \date 30/11/23
 */
 
-//Importation du fichier main.h qui contient toutes les déclaration de variable
+//Importation du fichier main.h qui contient toutes les dï¿½claration de variable
 #include "main.h"
 
 
@@ -20,7 +20,7 @@
 int main()
 {
 
-    //déclaration des variable
+    //dï¿½claration des variable
     int nb_vols = 0;
     int choix_de_recherche;
 
@@ -33,7 +33,7 @@ int main()
 
     struct Vols tabVols[40];
 
-    //Appel de la fonction procédur get_excel pour remplir le tableau de structure
+    //Appel de la fonction procï¿½dur get_excel pour remplir le tableau de structure
     get_excl(tabVols,pt_nb_vols);
     //affichage(tabVols,nb_vols);
     //recherche_comp(tabVols,pt_nb_vols,"Emirates");
@@ -44,7 +44,7 @@ int main()
     //Boucle pour choisir l'option voulue
     do {
 
-        //affiche les différents choix possibles
+        //affiche les diffï¿½rents choix possibles
         printf("**********************************************\n");
         printf("* Choisissez votre option                    *\n");
         printf("**********************************************\n");
@@ -57,18 +57,18 @@ int main()
         //printf("5. Gestion des retards / annulations des vols\n");
         //printf("6. Maximiser l'utilisation de la piste\n");
 
-        //recupère le choix de l'utilisateur
+        //recupï¿½re le choix de l'utilisateur
         printf("\nVeuillez, s'il vous plait, saisir votre choix : ");
 
-        // Lecture de la ligne d'entrée
+        // Lecture de la ligne d'entrï¿½e
         if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
             // Gestion d'une erreur de saisie
-            choice = -1;  // Réinitialise choice à une valeur non valide
+            choice = -1;  // Rï¿½initialise choice ï¿½ une valeur non valide
         } else {
             // Convertit la saisie en un entier
             if (sscanf(buffer, "%d", &choice) != 1) {
                 // Gestion d'une erreur de conversion
-                choice = -1;  // Réinitialise choice à une valeur non valide
+                choice = -1;  // Rï¿½initialise choice ï¿½ une valeur non valide
             }
         }
 
@@ -100,7 +100,7 @@ int main()
 
     } while (choice != 0);
 
-
     return 0;
+
 
 }
