@@ -6,7 +6,7 @@
  * \date 30/11/23
 */
 
-#include <stdio.h>  
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -66,3 +66,4 @@ void get_excl(struct Vols[],int*);
 void recherche_comp(struct Vols[],int,char[]);
 void recherche_panel(struct Vols[],int);
 void affichage(struct Vols[],int);
+void recherche_passa(struct Passager[],int,char[]);
