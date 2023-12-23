@@ -13,7 +13,7 @@
 #include "main.h"
 
 /**
- * \fn Fonction procédure Recherche_comp()
+ * \fn Fonction procï¿½dure Recherche_comp()
  * \brief recherche les vols contenant le nom de la compagnie voulue
  *
  * \author Thomas k,Guillaume F
@@ -21,14 +21,17 @@
 
 void recherche_panel(struct Vols tabVols[],int nb_vols) {
     int choice;
-    int result;
 
-    char value[NB_ELEMENT];
+    char compagnie[NB_ELEMENT];
+    char destination[NB_ELEMENT];
+    int heure_decollage;
 
     char buffer[256];
 
+    int is_int;
+
     do{
-        //affiche les différents choix possibles
+        //affiche les diffï¿½rents choix possibles
         printf("**********************************************\n");
         printf("* Choisissez votre option De recherche       *\n");
         printf("**********************************************\n");
@@ -41,15 +44,15 @@ void recherche_panel(struct Vols tabVols[],int nb_vols) {
         printf("\nVeuillez, s'il vous plait, saisir votre choix : ");
 
 
-        // Lecture de la ligne d'entrée
+        // Lecture de la ligne d'entrï¿½e
         if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
             // Gestion d'une erreur de saisie
-            choice = -1;  // Réinitialise choice à une valeur non valide
+            choice = -1;  // Rï¿½initialise choice ï¿½ une valeur non valide
         } else {
             // Convertit la saisie en un entier
             if (sscanf(buffer, "%d", &choice) != 1) {
                 // Gestion d'une erreur de conversion
-                choice = -1;  // Réinitialise choice à une valeur non valide
+                choice = -1;  // Rï¿½initialise choice ï¿½ une valeur non valide
             }
         }
         printf("\n");
@@ -60,17 +63,25 @@ void recherche_panel(struct Vols tabVols[],int nb_vols) {
             break;
         case 1:
             printf("Donner le nom de la compagnie que vous voulez rechercher : ");
-           // scanf("%s",&value);
-            gets(value);
+            gets(compagnie);
             printf("\n");
 
-            recherche_comp(tabVols,nb_vols,value);
+            recherche_comp(tabVols,nb_vols,compagnie);
             break;
         case 2:
-            //fonction par destination
+            printf("Donner le nom de la destination que vous voulez rechercher : ");
+            gets(destination);
+            printf("\n");
+
+            recherche_dest(tabVols,nb_vols,destination);
             break;
         case 3:
-            //fonction par heure de decollage
+            printf("Donner l'heure de dÃ©collage du vol que vous voulez rechercher sous la forme hhmm : ");
+            
+            scanf("%d",&heure_decollage);
+            printf("\n");
+
+            recherche_heure_dec(tabVols,nb_vols,heure_decollage);
             break;
 
         default:
@@ -78,6 +89,7 @@ void recherche_panel(struct Vols tabVols[],int nb_vols) {
             break;
         }
 
+    //Switch recherche avancÃ© qui prend 1 2 ou les 3 parametre
 
     }while (choice != 0);
 }
