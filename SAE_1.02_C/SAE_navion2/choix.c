@@ -28,8 +28,6 @@ void recherche_panel(struct Vols tabVols[],int nb_vols) {
 
     char buffer[256];
 
-    int is_int;
-
     do{
         //affiche les diff�rents choix possibles
         printf("**********************************************\n");
@@ -55,6 +53,7 @@ void recherche_panel(struct Vols tabVols[],int nb_vols) {
                 choice = -1;  // R�initialise choice � une valeur non valide
             }
         }
+
         printf("\n");
         switch (choice)
         {
@@ -76,12 +75,33 @@ void recherche_panel(struct Vols tabVols[],int nb_vols) {
             recherche_dest(tabVols,nb_vols,destination);
             break;
         case 3:
-            printf("Donner l'heure de décollage du vol que vous voulez rechercher sous la forme hhmm : ");
-            
-            scanf("%d",&heure_decollage);
-            printf("\n");
+            do{
+                printf("Merci de donner l'heure de decollage du vol que vous voulez rechercher sous la forme hhmm (+- 30min) 0 pour quitter : ");
 
-            recherche_heure_dec(tabVols,nb_vols,heure_decollage);
+                if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
+                    // Gestion d'une erreur de saisie
+                    printf("Erreur de saisis !\n");
+                } else {
+                    // Convertit la saisie en un entier
+                    if (sscanf(buffer, "%d", &heure_decollage) != 1) {
+
+                    // Gestion d'une erreur de conversion
+                    printf("Erreur de saisis !\n");
+
+                    } else {
+                        if (heure_decollage != 0) {
+                                                    
+                            printf("\n");
+
+                            recherche_heure_dec(tabVols,nb_vols,heure_decollage);
+                        }
+                        printf("\n");
+                        choice = -1;
+                    }
+                }
+            }while(choice == 3);
+
+
             break;
 
         default:

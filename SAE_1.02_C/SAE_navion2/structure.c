@@ -120,16 +120,4 @@ void get_excl(struct Vols tabVols[],int* nb_vols) {
         fclose(pointeur_de_fichier);
     }
 
-    /*
-    //printf("Numero de vol : %d\n",tabVols[2].numero);
-    //printf("Nom de la compagnie : %s\n",tabVols[1].compagnie);
-    printf("Nom de la destination : %s\n\n",tabVols[0].etat_vol);
-    //printf("Numero du comptoir : %d\n",tabVols[1].num_comptoir);
-
-    printf("Prenom du passager 0 du vol 0 : %s\n",tabVols[0].Passager_vols[1].prix);
-
-    printf("Nombre de passager sur le vol 0 : %d\n\n", tabVols[0].nombre_passagers);
-
-    printf("Nom dun passager hors de la liste : %s",tabVols[0].Passager_vols[5].nom);
-    */
 }
