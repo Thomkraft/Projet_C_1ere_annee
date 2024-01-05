@@ -31,10 +31,22 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Affichage_passager.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="Recherche.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="Tri.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="affichage_vol.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="choix.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="heure.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="main.c">
