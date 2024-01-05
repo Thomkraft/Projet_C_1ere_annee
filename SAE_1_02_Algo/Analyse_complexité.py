@@ -376,6 +376,13 @@ while i < 10:
 calcul = 0
 i=0
 
+#Pour modifier l'algorythme que vous shouaitez tester il suffit de modifier le nom de la fonction deja présente 
+
+#si cette fonction ne renvoie que 1 parametre alors 
+#la forme dois etre de value = fonction()
+
+#si cette fonction renvoie 2 valeur elle doit etre de la forme
+# occ, value = fonction()
 while i < 10:
     occ, value = recherche_dicho(tab_10[i],100)
     calcul = calcul + value
