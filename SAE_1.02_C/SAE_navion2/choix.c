@@ -13,13 +13,15 @@
 #include "main.h"
 
 /**
- * \fn Fonction proc�dure Recherche_comp()
- * \brief recherche les vols contenant le nom de la compagnie voulue
+ * \fn Fonction procedure Recherche_panel()
+ * \brief affiche le panel de choix des différentes recherche possible
  *
- * \author Thomas k,Guillaume F
+ * \author Thomas k
 */
 
 void recherche_panel(struct Vols tabVols[],int nb_vols) {
+
+    //declaration des variables utilisées
     int choice;
 
     char compagnie[NB_ELEMENT];
@@ -28,6 +30,7 @@ void recherche_panel(struct Vols tabVols[],int nb_vols) {
 
     char buffer[256];
 
+    //boucle pour afficher le message des différents choix de recherche
     do{
         //affiche les diff�rents choix possibles
         printf("**********************************************\n");
@@ -42,19 +45,21 @@ void recherche_panel(struct Vols tabVols[],int nb_vols) {
         printf("\nVeuillez, s'il vous plait, saisir votre choix : ");
 
 
-        // Lecture de la ligne d'entr�e
+        // Lecture de la ligne d'entree
         if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
             // Gestion d'une erreur de saisie
-            choice = -1;  // R�initialise choice � une valeur non valide
+            choice = -1;  // Reinitialise choice si une valeur est non valide
         } else {
             // Convertit la saisie en un entier
             if (sscanf(buffer, "%d", &choice) != 1) {
                 // Gestion d'une erreur de conversion
-                choice = -1;  // R�initialise choice � une valeur non valide
+                choice = -1;  // Reinitialise choice si une valeur est non valide
             }
         }
 
         printf("\n");
+
+        //Liste les choix possible en fonction de la valeur de choice
         switch (choice)
         {
         case 0:
@@ -74,7 +79,9 @@ void recherche_panel(struct Vols tabVols[],int nb_vols) {
 
             recherche_dest(tabVols,nb_vols,destination);
             break;
+
         case 3:
+            //verifie que lheure de décollage est bien de la bonne forme
             do{
                 printf("Merci de donner l'heure de decollage du vol que vous voulez rechercher sous la forme hhmm (+- 30min) 0 pour quitter : ");
 
@@ -89,6 +96,7 @@ void recherche_panel(struct Vols tabVols[],int nb_vols) {
                     printf("Erreur de saisis !\n");
 
                     } else {
+                        //si tout est correct la fonction sexecute
                         if (heure_decollage != 0) {
                                                     
                             printf("\n");
@@ -99,6 +107,7 @@ void recherche_panel(struct Vols tabVols[],int nb_vols) {
                         choice = -1;
                     }
                 }
+            //arret de la boucle des que choice !=3
             }while(choice == 3);
 
 
@@ -108,8 +117,7 @@ void recherche_panel(struct Vols tabVols[],int nb_vols) {
             printf("\nerreur de valeur merci de recommencer !\n\n");
             break;
         }
-
-    //Switch recherche avancé qui prend 1 2 ou les 3 parametre
+    //sort de la boucle daffichage et revien au premier affichage de main.c si choice = 0
 
     }while (choice != 0);
 }
