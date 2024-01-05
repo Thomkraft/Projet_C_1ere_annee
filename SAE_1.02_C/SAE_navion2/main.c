@@ -33,14 +33,11 @@ int main()
 
     int* pt_nb_vols = &nb_vols;
 
+    //Definition du tableau de structure tabVols
     struct Vols tabVols[40];
 
     //Appel de la fonction proc�dur get_excel pour remplir le tableau de structure
     get_excl(tabVols,pt_nb_vols);
-    //affichage(tabVols,nb_vols);
-    //recherche_comp(tabVols,pt_nb_vols,"Emirates");
-
-
 
 
     //Boucle pour choisir l'option voulue
@@ -56,8 +53,6 @@ int main()
         printf("* 3. Affichage de la liste des passagers     *\n");
         printf("* 4. Changement de l'heure                   *\n");
         printf("**********************************************\n");
-        //printf("5. Gestion des retards / annulations des vols\n");
-        //printf("6. Maximiser l'utilisation de la piste\n");
 
         //recup�re le choix de l'utilisateur
         printf("\nVeuillez, s'il vous plait, saisir votre choix : ");
@@ -74,6 +69,7 @@ int main()
             }
         }
 
+        //Liste les choix possible en fonction de la valeur de choice
         switch (choice)
         {
         case 0:
@@ -102,7 +98,7 @@ int main()
             break;
         }
 
-
+    //sort de la boucle si choice = 0
     } while (choice != 0);
 
     return 0;
