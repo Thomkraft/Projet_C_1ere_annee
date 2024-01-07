@@ -91,6 +91,7 @@ int main()
             //fonction de changement d'heure
             heure = saisi_heure(heure);
             printf("\nL'heure actuelle est de %d\n", heure);
+            while (getchar() != '\n');
             break;
 
         default:

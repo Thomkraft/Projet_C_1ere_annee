@@ -17,9 +17,10 @@
 
 int saisi_heure(int h) {
     int heure, choice;
+    char buffer[256];
 
     do {
-        // Affiche les diff�rents choix possibles
+        // Affiche les differents choix possibles
         printf("**********************************************\n");
         printf("* Choisissez votre option De recherche       *\n");
         printf("**********************************************\n");
@@ -28,9 +29,19 @@ int saisi_heure(int h) {
         printf("* 1. changer l'heure actuelle                *\n");
         printf("**********************************************\n");
 
-        // Utilisation de scanf pour r�cup�rer le choix de l'utilisateur
-        if (scanf("%d", &choice) != 1) {
-            printf("Erreur de saisie ! Veuillez r�essayer.\n");
+        printf("\nVeuillez, s'il vous plait, saisir votre choix : ");
+
+
+        // Lecture de la ligne d'entree
+        if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
+            // Gestion d'une erreur de saisie
+            choice = -1;  // Reinitialise choice si une valeur est non valide
+        } else {
+            // Convertit la saisie en un entier
+            if (sscanf(buffer, " %d", &choice) != 1) {
+                // Gestion d'une erreur de conversion
+                choice = -1;  // Reinitialise choice si une valeur est non valide
+            }
         }
 
         switch (choice) {
@@ -44,16 +55,18 @@ int saisi_heure(int h) {
                     printf("Veuillez saisir l'heure au format hhmm : ");
                     if (scanf("%d", &heure) != 1 || heure < 0 || heure > 2359 || heure % 100 >= 60) {
 
-                        printf("Erreur : Saisie invalide. Veuillez r�essayer.\n");
-                    } else {
-                        // La saisie est valide, met � jour l'heure et sortie de la boucle
+                        printf("Erreur : Saisie invalide. Veuillez reessayer.\n");
+                        while (getchar() != '\n');
+                    }
+                    else {
+                        // La saisie est valide, met a jour l'heure et sortie de la boucle
                         break;
                     }
                 } while (heure != 1 || heure < 0 || heure > 2359 || heure % 100 >= 60);
-                // Retourne la nouvelle heure � la fin de la saisie
+                // Retourne la nouvelle heure a la fin de la saisie
                 return heure;
             default:
-                printf("Choix invalide ! Veuillez r�essayer.\n");
+                printf("Choix invalide ! Veuillez ressayer.\n");
         }
 
 

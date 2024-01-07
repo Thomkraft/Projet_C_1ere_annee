@@ -10,25 +10,24 @@
 
 /**
  * \fn Fonction procdure affichage_vol()
- * \brief recherche les vols qui décollent dans les 3h
+ * \brief recherche les vols qui dÃ©collent dans les 3h
  *
  * \author Guillaume F
 */
 
 
 void affichage_vol(struct Vols tabVols[], int nbvols, int heure) {
-    //Déclaration des différentes variables du programme
+    //DÃ©claration des diffÃ©rentes variables du programme
     int i = 0;
     int j = 0;
     int k = 0;
     int retard = 0;
 
-    printf("\nscript test\n");
-    // Déclaration d'un tableau de pointeurs de structures Vols
+    // DÃ©claration d'un tableau de pointeurs de structures Vols
     struct Vols* tabvols_tri[100];
 
     for(i = 0; i < nbvols; i++) {
-        // Trie les vols avec du retard, qui n'ont pas encore décollé et qui ont dépassé l'heure de décollage initial
+        // Trie les vols avec du retard, qui n'ont pas encore dÃ©collÃ© et qui ont dÃ©passÃ© l'heure de dÃ©collage initial
         if (sscanf(tabVols[i].etat_vol, "Retarde (%d min)", &retard) != 0 &&
             tabVols[i].heure_decollage < heure &&
             tabVols[i].heure_decollage + retard > heure) {
@@ -47,7 +46,7 @@ void affichage_vol(struct Vols tabVols[], int nbvols, int heure) {
 
     for(i=0; i<j-1; i++)
     {
-        //Vérification si le tri est néccessaire
+        //VÃ©rification si le tri est nÃ©ccessaire
         if(tabvols_tri[i]->heure_decollage > tabvols_tri[i+1]->heure_decollage)
         {
         // Trie le tableau tabvols_tri en utilisant le tri fusion
@@ -62,7 +61,7 @@ void affichage_vol(struct Vols tabVols[], int nbvols, int heure) {
         printf("| No |       Compagnie      |      Destination     | No comp | deb enr | fin enr | salle emb | deb emb | fin emb | Heur dec |       etat vols      |\n");
         printf("----------------------------------------------------------------------------------------------------------------------------------------------------\n");
         for (i = 0; i != j; i++) {
-            k = tabvols_tri[i] - tabVols;  // Calcule l'index original à partir de l'adresse
+            k = tabvols_tri[i] - tabVols;  // Calcule l'index original Ã  partir de l'adresse
             printf("| %2d | %20s | %20s | %7d | %7d | %7d | %9d | %7d | %7d | %8d | %20s |\n",
                    tabVols[k].numero,
                    tabVols[k].compagnie,
