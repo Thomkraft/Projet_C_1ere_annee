@@ -134,6 +134,9 @@ void recherche_heure_dec(struct Vols tabVols[],int nbvols,int heure_decollage) {
 
     int retard;
 
+    int heures_retard;
+    int minutes_retard;
+
     //Affichage de la banderole 
     printf("Affichage des vols qui décollent dans +- 30min de %d\n  ",heure_decollage);
     printf("----------------------------------------------------------------------------------------------------------------------------------------------------\n");
@@ -141,16 +144,30 @@ void recherche_heure_dec(struct Vols tabVols[],int nbvols,int heure_decollage) {
     printf("----------------------------------------------------------------------------------------------------------------------------------------------------\n");
 
     for(i=0;i<nbvols;i++) {
-
+/*
         //Recherche si des vols on du retard
         if (sscanf(tabVols[i].etat_vol, "Retarde (%d min)", &retard) != 0) {
 
+            minutes_retard = tabVols[i].heure_decollage % 100 + retard;
+
+
+            if(minutes_retard >= 60) {
+                heures_retard = minutes_retard / 60;
+                minutes_retard = minutes_retard % 60;
+            }
+
+            retard = (heures_retard * 100) + minutes_retard;
+
+        } else {
+            retard = 0;
         }
 
+        //-30 ca ùarche pas pour les heure pile 1600 - 30 = 1570
+*/
         //Condition si lheure de decollage est comprise +-30 de l'heure de décollage voulue alors on affiche les infos des vols
         // ( Heure de fin de débarquement dois etre supérieur a l'heure actuelle )
 
-        if (heure_decollage-30 < tabVols[i].heure_decollage+retard &&  tabVols[i].heure_decollage+retard < heure_decollage+30) {
+        if (heure_decollage-30 < tabVols[i].heure_decollage+retard && tabVols[i].heure_decollage < heure_decollage+30) {
 
             //affiche les infos du vol
             printf("| %2d | %20s | %20s | %7d | %7d | %7d | %9d | %7d | %7d | %8d | %20s |\n",
@@ -175,7 +192,7 @@ void recherche_heure_dec(struct Vols tabVols[],int nbvols,int heure_decollage) {
 
     //si aucun vol affiché alors mettre un message d'erreur
     if (j == 0) {
-        printf("Il n'y a aucun Vols avec une heure de decollage a : %d\n",heure_decollage);
+        printf("Il n'y a aucun Vols avec une heure de decollage a : %dh%d\n",heure_decollage/100,heure_decollage%100);
     }
 
     printf("----------------------------------------------------------------------------------------------------------------------------------------------------\n");
