@@ -73,7 +73,7 @@ void recherche_comp(struct Vols tabVols[],int nbvols,char name_compagnie[],int h
 
 void recherche_dest(struct Vols tabVols[],int nbvols,char name_destination[],int heure) {
 
-    //declaration des variable interne a la focntion
+    //declaration des variable interne a la fonction
     int i;
     int j = 0;
 
@@ -126,11 +126,13 @@ void recherche_dest(struct Vols tabVols[],int nbvols,char name_destination[],int
  * \author Thomas k
 */
 
-void recherche_heure_dec(struct Vols tabVols[],int nbvols,int heure_decollage,int heure) {
+void recherche_heure_dec(struct Vols tabVols[],int nbvols,int heure_decollage) {
 
     //declaration des variable interne a la focntion
     int i;
     int j = 0;
+
+    int retard;
 
     //Affichage de la banderole 
     printf("Affichage des vols qui décollent dans +- 30min de %d\n  ",heure_decollage);
@@ -140,10 +142,15 @@ void recherche_heure_dec(struct Vols tabVols[],int nbvols,int heure_decollage,in
 
     for(i=0;i<nbvols;i++) {
 
-        //Condition si lheure de decollage est compris +-30 de l'heure de décollage voulue alors on affiche les infos des vols
+        //Recherche si des vols on du retard
+        if (sscanf(tabVols[i].etat_vol, "Retarde (%d min)", &retard) != 0) {
+
+        }
+
+        //Condition si lheure de decollage est comprise +-30 de l'heure de décollage voulue alors on affiche les infos des vols
         // ( Heure de fin de débarquement dois etre supérieur a l'heure actuelle )
 
-        if (heure_decollage-30 < tabVols[i].heure_decollage &&  tabVols[i].heure_decollage < heure_decollage+30 && tabVols[i].fin_embarquement > heure) {
+        if (heure_decollage-30 < tabVols[i].heure_decollage+retard &&  tabVols[i].heure_decollage+retard < heure_decollage+30) {
 
             //affiche les infos du vol
             printf("| %2d | %20s | %20s | %7d | %7d | %7d | %9d | %7d | %7d | %8d | %20s |\n",

@@ -101,7 +101,7 @@ void recherche_panel(struct Vols tabVols[],int nb_vols,int heure) {
                                                     
                             printf("\n");
 
-                            recherche_heure_dec(tabVols,nb_vols,heure_decollage,heure);
+                            recherche_heure_dec(tabVols,nb_vols,heure_decollage);
                         }
                         printf("\n");
                         choice = -1;
