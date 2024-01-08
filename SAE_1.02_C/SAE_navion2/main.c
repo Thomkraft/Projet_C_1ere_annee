@@ -22,7 +22,6 @@ int main()
 
     //d�claration des variable
     int nb_vols = 0;
-    int choix_de_recherche;
 
     int choice;
 
@@ -82,7 +81,7 @@ int main()
         case 2:
             printf("\n\n");
 
-            recherche_panel(tabVols,nb_vols);
+            recherche_panel(tabVols,nb_vols,heure);
             break;
         case 3:
             //fonction d'affichge

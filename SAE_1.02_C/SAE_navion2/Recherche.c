@@ -15,13 +15,11 @@
  * \author Thomas k
 */
 
-void recherche_comp(struct Vols tabVols[],int nbvols,char name_compagnie[]) {
+void recherche_comp(struct Vols tabVols[],int nbvols,char name_compagnie[],int heure) {
 
     //declaration des variable interne a la focntion
     int i;
     int j = 0;
-
-    int heure = 1600;
 
     //Affichage de la banderole 
     printf("----------------------------------------------------------------------------------------------------------------------------------------------------\n");
@@ -73,13 +71,11 @@ void recherche_comp(struct Vols tabVols[],int nbvols,char name_compagnie[]) {
  * \author Thomas k
 */
 
-void recherche_dest(struct Vols tabVols[],int nbvols,char name_destination[]) {
+void recherche_dest(struct Vols tabVols[],int nbvols,char name_destination[],int heure) {
 
     //declaration des variable interne a la focntion
     int i;
     int j = 0;
-
-    int heure = 1600;
 
     //Affichage de la banderole 
     printf("----------------------------------------------------------------------------------------------------------------------------------------------------\n");
@@ -130,13 +126,11 @@ void recherche_dest(struct Vols tabVols[],int nbvols,char name_destination[]) {
  * \author Thomas k
 */
 
-void recherche_heure_dec(struct Vols tabVols[],int nbvols,int heure_decollage) {
+void recherche_heure_dec(struct Vols tabVols[],int nbvols,int heure_decollage,int heure) {
 
     //declaration des variable interne a la focntion
     int i;
     int j = 0;
-    
-    int heure = 0;
 
     //Affichage de la banderole 
     printf("Affichage des vols qui décollent dans +- 30min de %d\n  ",heure_decollage);
