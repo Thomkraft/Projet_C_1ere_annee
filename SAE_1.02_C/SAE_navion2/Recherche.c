@@ -17,7 +17,7 @@
 
 void recherche_comp(struct Vols tabVols[],int nbvols,char name_compagnie[],int heure) {
 
-    //declaration des variable interne a la focntion
+    //declaration des variables internes a la fonction
     int i;
     int j = 0;
 
@@ -30,7 +30,7 @@ void recherche_comp(struct Vols tabVols[],int nbvols,char name_compagnie[],int h
     for(i=0;i<nbvols;i++) {
 
         //Condition si le nom de compagnie du vol corresspond au nom de compagnie voulue alors on affiche les info du vol
-        // ( Heure de fin de débarquement dois etre supérieur a l'heure actuelle )
+        //( Heure de fin de débarquement dois etre supérieur a l'heure actuelle )
         if (strcmp(tabVols[i].compagnie, name_compagnie) == 0 && tabVols[i].fin_embarquement > heure) {
 
             //affiche les infos du vol
@@ -48,18 +48,18 @@ void recherche_comp(struct Vols tabVols[],int nbvols,char name_compagnie[],int h
             tabVols[i].etat_vol
             );
 
-            //compte le nombre de vol qui sont affichés
+            //compte le nombre de vol qui sont affiché
             j++;
 
         }
     }
 
-    //si aucun vol affiché alors mettre un message derreur
+    //si aucun vol n'est affiché alors mettre un message d'erreur
     if (j == 0) {
         printf("Il n'y a aucun Vols avec comme nom de compagnie : %s\n",name_compagnie);
     }
 
-    //ferme le carré daffichage
+    //ferme le carré d'affichage
     printf("----------------------------------------------------------------------------------------------------------------------------------------------------\n");
     printf("\n");
 }
@@ -73,7 +73,7 @@ void recherche_comp(struct Vols tabVols[],int nbvols,char name_compagnie[],int h
 
 void recherche_dest(struct Vols tabVols[],int nbvols,char name_destination[],int heure) {
 
-    //declaration des variable interne a la fonction
+    //declaration des variables internes à la fonction
     int i;
     int j = 0;
 
@@ -109,7 +109,7 @@ void recherche_dest(struct Vols tabVols[],int nbvols,char name_destination[],int
         }
     }
 
-    //si aucun vol affiché alors mettre un message derreur
+    //si aucun vol n'est affiché alors mettre un message d'erreur
     if (j == 0) {
         printf("Il n'y a aucun Vols avec comme nom de destination : %s\n",name_destination);
     }
@@ -128,7 +128,7 @@ void recherche_dest(struct Vols tabVols[],int nbvols,char name_destination[],int
 
 void recherche_heure_dec(struct Vols tabVols[],int nbvols,int heure_decollage) {
 
-    //declaration des variable interne a la focntion
+    //declaration des variables internes à la focntion
     int i;
     int j = 0;
 
@@ -173,7 +173,7 @@ void recherche_heure_dec(struct Vols tabVols[],int nbvols,int heure_decollage) {
         }
     }
 
-    //si aucun vol affiché alors mettre un message derreur
+    //si aucun vol affiché alors mettre un message d'erreur
     if (j == 0) {
         printf("Il n'y a aucun Vols avec une heure de decollage a : %d\n",heure_decollage);
     }
@@ -181,7 +181,3 @@ void recherche_heure_dec(struct Vols tabVols[],int nbvols,int heure_decollage) {
     printf("----------------------------------------------------------------------------------------------------------------------------------------------------\n");
 
 }
-
-//
-// pr la recherche ameliorer remplir un tableau avec les argument ( 3 max ) si tab [4] est remplie alors erreur
-//
