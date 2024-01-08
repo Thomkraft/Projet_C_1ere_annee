@@ -59,12 +59,14 @@ struct Vols{
 
 //Declaration des differentes fonction du programme
 void get_excl(struct Vols[],int*);
-void recherche_comp(struct Vols[],int,char[]);
-void recherche_dest(struct Vols[],int,char[]);
+void recherche_comp(struct Vols[],int,char[],int);
+void recherche_dest(struct Vols[],int,char[],int);
 void recherche_heure_dec(struct Vols[],int,int);
-void recherche_panel(struct Vols[],int);
+void recherche_panel(struct Vols[],int,int);
 void affichage_par_vol(struct Vols[] ,int);
 int saisi_heure(int);
 void affichage_vol(struct Vols[], int, int);
 void tri_fusion(struct Vols* [], int, int);
 void interclassement(struct Vols* [], int, int, int);
+void tri_fusionv2(struct Passager* [], int, int);
+void interclassementv2(struct Passager* [], int, int, int);

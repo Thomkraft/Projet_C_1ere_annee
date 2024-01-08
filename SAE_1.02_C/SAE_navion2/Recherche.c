@@ -15,13 +15,11 @@
  * \author Thomas k
 */
 
-void recherche_comp(struct Vols tabVols[],int nbvols,char name_compagnie[]) {
+void recherche_comp(struct Vols tabVols[],int nbvols,char name_compagnie[],int heure) {
 
-    //declaration des variable interne a la focntion
+    //declaration des variables internes a la fonction
     int i;
     int j = 0;
-
-    int heure = 1600;
 
     //Affichage de la banderole 
     printf("----------------------------------------------------------------------------------------------------------------------------------------------------\n");
@@ -32,7 +30,7 @@ void recherche_comp(struct Vols tabVols[],int nbvols,char name_compagnie[]) {
     for(i=0;i<nbvols;i++) {
 
         //Condition si le nom de compagnie du vol corresspond au nom de compagnie voulue alors on affiche les info du vol
-        // ( Heure de fin de débarquement dois etre supérieur a l'heure actuelle )
+        //( Heure de fin de débarquement dois etre supérieur a l'heure actuelle )
         if (strcmp(tabVols[i].compagnie, name_compagnie) == 0 && tabVols[i].fin_embarquement > heure) {
 
             //affiche les infos du vol
@@ -50,18 +48,18 @@ void recherche_comp(struct Vols tabVols[],int nbvols,char name_compagnie[]) {
             tabVols[i].etat_vol
             );
 
-            //compte le nombre de vol qui sont affichés
+            //compte le nombre de vol qui sont affiché
             j++;
 
         }
     }
 
-    //si aucun vol affiché alors mettre un message derreur
+    //si aucun vol n'est affiché alors mettre un message d'erreur
     if (j == 0) {
         printf("Il n'y a aucun Vols avec comme nom de compagnie : %s\n",name_compagnie);
     }
 
-    //ferme le carré daffichage
+    //ferme le carré d'affichage
     printf("----------------------------------------------------------------------------------------------------------------------------------------------------\n");
     printf("\n");
 }
@@ -73,13 +71,11 @@ void recherche_comp(struct Vols tabVols[],int nbvols,char name_compagnie[]) {
  * \author Thomas k
 */
 
-void recherche_dest(struct Vols tabVols[],int nbvols,char name_destination[]) {
+void recherche_dest(struct Vols tabVols[],int nbvols,char name_destination[],int heure) {
 
-    //declaration des variable interne a la focntion
+    //declaration des variables internes à la fonction
     int i;
     int j = 0;
-
-    int heure = 1600;
 
     //Affichage de la banderole 
     printf("----------------------------------------------------------------------------------------------------------------------------------------------------\n");
@@ -113,7 +109,7 @@ void recherche_dest(struct Vols tabVols[],int nbvols,char name_destination[]) {
         }
     }
 
-    //si aucun vol affiché alors mettre un message derreur
+    //si aucun vol n'est affiché alors mettre un message d'erreur
     if (j == 0) {
         printf("Il n'y a aucun Vols avec comme nom de destination : %s\n",name_destination);
     }
@@ -132,11 +128,14 @@ void recherche_dest(struct Vols tabVols[],int nbvols,char name_destination[]) {
 
 void recherche_heure_dec(struct Vols tabVols[],int nbvols,int heure_decollage) {
 
-    //declaration des variable interne a la focntion
+    //declaration des variables internes à la focntion
     int i;
     int j = 0;
-    
-    int heure = 0;
+
+    int retard;
+
+    int heures_retard;
+    int minutes_retard;
 
     //Affichage de la banderole 
     printf("Affichage des vols qui décollent dans +- 30min de %d\n  ",heure_decollage);
@@ -145,11 +144,30 @@ void recherche_heure_dec(struct Vols tabVols[],int nbvols,int heure_decollage) {
     printf("----------------------------------------------------------------------------------------------------------------------------------------------------\n");
 
     for(i=0;i<nbvols;i++) {
+/*
+        //Recherche si des vols on du retard
+        if (sscanf(tabVols[i].etat_vol, "Retarde (%d min)", &retard) != 0) {
 
-        //Condition si lheure de decollage est compris +-30 de l'heure de décollage voulue alors on affiche les infos des vols
+            minutes_retard = tabVols[i].heure_decollage % 100 + retard;
+
+
+            if(minutes_retard >= 60) {
+                heures_retard = minutes_retard / 60;
+                minutes_retard = minutes_retard % 60;
+            }
+
+            retard = (heures_retard * 100) + minutes_retard;
+
+        } else {
+            retard = 0;
+        }
+
+        //-30 ca ùarche pas pour les heure pile 1600 - 30 = 1570
+*/
+        //Condition si lheure de decollage est comprise +-30 de l'heure de décollage voulue alors on affiche les infos des vols
         // ( Heure de fin de débarquement dois etre supérieur a l'heure actuelle )
 
-        if (heure_decollage-30 < tabVols[i].heure_decollage &&  tabVols[i].heure_decollage < heure_decollage+30 && tabVols[i].fin_embarquement > heure) {
+        if (heure_decollage-30 < tabVols[i].heure_decollage+retard && tabVols[i].heure_decollage < heure_decollage+30) {
 
             //affiche les infos du vol
             printf("| %2d | %20s | %20s | %7d | %7d | %7d | %9d | %7d | %7d | %8d | %20s |\n",
@@ -172,15 +190,11 @@ void recherche_heure_dec(struct Vols tabVols[],int nbvols,int heure_decollage) {
         }
     }
 
-    //si aucun vol affiché alors mettre un message derreur
+    //si aucun vol affiché alors mettre un message d'erreur
     if (j == 0) {
-        printf("Il n'y a aucun Vols avec une heure de decollage a : %d\n",heure_decollage);
+        printf("Il n'y a aucun Vols avec une heure de decollage a : %dh%d\n",heure_decollage/100,heure_decollage%100);
     }
 
     printf("----------------------------------------------------------------------------------------------------------------------------------------------------\n");
 
 }
-
-//
-// pr la recherche ameliorer remplir un tableau avec les argument ( 3 max ) si tab [4] est remplie alors erreur
-//

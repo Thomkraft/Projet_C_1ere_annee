@@ -19,7 +19,7 @@
  * \author Thomas k
 */
 
-void recherche_panel(struct Vols tabVols[],int nb_vols) {
+void recherche_panel(struct Vols tabVols[],int nb_vols,int heure) {
 
     //declaration des variables utilisées
     int choice;
@@ -70,14 +70,14 @@ void recherche_panel(struct Vols tabVols[],int nb_vols) {
             gets(compagnie);
             printf("\n");
 
-            recherche_comp(tabVols,nb_vols,compagnie);
+            recherche_comp(tabVols,nb_vols,compagnie,heure);
             break;
         case 2:
             printf("Donner le nom de la destination que vous voulez rechercher : ");
             gets(destination);
             printf("\n");
 
-            recherche_dest(tabVols,nb_vols,destination);
+            recherche_dest(tabVols,nb_vols,destination,heure);
             break;
 
         case 3:

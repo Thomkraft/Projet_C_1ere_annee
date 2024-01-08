@@ -31,13 +31,13 @@ void get_excl(struct Vols tabVols[],int* nb_vols) {
 
     char contenue[NB_ELEMENT];
 
-    //Definition du tableau contenant la liste des passager
+    //Definition du tableau contenant la liste des passagers
     char liste_passager_all[400][500];
 
     int lignes = 0;
     int collonnes = 0;
 
-    //ouverture du chier data_vols.csv
+    //ouverture du fichier data_vols.csv
     pointeur_de_fichier = fopen(nom_fichier, "r");
 
     //Verification si erreur lors de l'ouverture du fichier
@@ -45,7 +45,7 @@ void get_excl(struct Vols tabVols[],int* nb_vols) {
         printf("\nL'ouverture du fichier en lecture du fichier %s a echoue. \n",nom_fichier);
     } else {
 
-        //Saute la 1ere ligne du fichier pour eviter de remplir notre structure avec les nom des collonnes
+        //Saute la 1ere ligne du fichier pour eviter de remplir notre structure avec les noms des collonnes
         if (fgets(contenue,sizeof(contenue),pointeur_de_fichier) == NULL) {
             printf("Erreur lors de l'ouverture du fichier");
         } else {
@@ -55,7 +55,7 @@ void get_excl(struct Vols tabVols[],int* nb_vols) {
 
                 //Separe la ligne par les ',' et les differents passagers par '"'
                 sscanf(contenue,"%d,%[^,],%[^,],%d,%d,%d,%d,%d,%d,%d,%[^,],\"%[^\"]",
-                //remplie les information du vol a la ligne X
+                //remplie les informations du vol à la ligne X
                 &tabVols[lignes].numero,
                 tabVols[lignes].compagnie,
                 tabVols[lignes].destination,
@@ -87,7 +87,7 @@ void get_excl(struct Vols tabVols[],int* nb_vols) {
                     sscanf(passagerToken, "%[^,],%[^,],%[^,],%d,%s",
 
                     //stock dans la structure passager les information du passager Y pour le vol X
-                    //Car il y a plusieur passager pour le vol X
+                    //Car il y a plusieurs passagers pour le vol X
                     //grace a cela plusieurs passager peuvent avoir l'indice 0 ou 1 ect car ils dependent egalement du numero du vol
                     tabVols[lignes].Passager_vols[tabVols[lignes].nombre_passagers].nom,
                     tabVols[lignes].Passager_vols[tabVols[lignes].nombre_passagers].prenom,
