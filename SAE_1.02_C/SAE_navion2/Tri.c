@@ -18,21 +18,25 @@
 void tri_fusion(struct Vols* tab[], int l, int r) {
     if (l < r) {
         // identifie le milieu du tableau
-        int m = l + (r - l) / 2;
+        int m = (l + r - 1) / 2;
 
         // Trie la première et la deuxième moitié
         tri_fusion(tab, l, m);
+        printf("1 c good ");
         tri_fusion(tab, m + 1, r);
+        printf("2 c good ");
+        printf("l : %d  m : %d  r : %d ", l,m,r);
 
         // Fusionne les moitiés triées
         interclassement(tab, l, m, r);
+        printf("interclassement ok ");
     }
 }
 
 // Fonction de fusion pour le tri fusion (modifiée pour les structures Vols)
 void interclassement(struct Vols* tab[], int l, int m, int r) {
     int i, j, k;
-    int n1 = m - l + 1;
+    int n1 = m - l;
     int n2 = r - m;
 
     // Crée des tableaux temporaires
@@ -86,7 +90,7 @@ void interclassement(struct Vols* tab[], int l, int m, int r) {
 void tri_fusionv2(struct Passager* tab[], int l, int r) {
     if (l < r) {
         // identifie le milieu du tableau
-        int m = l + (r - l) / 2;
+        int m = (l + r - 1) / 2;
 
         // Trie la première et la deuxième moitié
         tri_fusionv2(tab, l, m);

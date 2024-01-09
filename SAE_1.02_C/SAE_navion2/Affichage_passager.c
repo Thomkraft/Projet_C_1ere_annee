@@ -18,7 +18,7 @@
 void affichage_passager(struct Vols tabVols[],int nbvols,int heure){
     //Declaration de mes variables
     int salle_emb;
-    int i,j,num_vols,taille;
+    int i,j,num_vols;
 
     //demande du numero de salle d'embarquement
     do{
@@ -36,12 +36,11 @@ void affichage_passager(struct Vols tabVols[],int nbvols,int heure){
     {
         if(tabVols[i].salle_embarquement == salle_emb)
         {
-            j++;
-            tabvols_salles[j] = &tabVols[i];
+            tabvols_salles[j++] = &tabVols[i];
         }
-
     }
     //tri des vols en fonction de l'heure
+     printf("ghjk");
     tri_fusion(tabvols_salles,0,j+1);
     printf("%d",j);
     //recherche du prochain vol à embarquer
@@ -53,7 +52,6 @@ void affichage_passager(struct Vols tabVols[],int nbvols,int heure){
             printf(" affichage UWU %d" ,num_vols);
         }
     }
-
 
     j=0;
     for (i=0;i<nbvols;i++)
@@ -74,15 +72,21 @@ void affichage_passager(struct Vols tabVols[],int nbvols,int heure){
 
     i=0;
 
-
     for (i=0;i<40;i++)
     {
         //printf("%d (%d) ",tabVols[i].numero,num_vols);
         if (tabVols[i].numero == num_vols)
         {
-            printf("| %10s | %10s |",
-                   tabVols[i].Passager_vols[tabVols[i].nombre_passagers].nom,
-                   tabVols[i].Passager_vols[tabVols[i].nombre_passagers].prenom);
+
+            Vols current = tabVols[i];
+            printf("%d",current.numero);
+            for (j=0;j<40;j++)
+            {
+                Passager pcurrent = current.Passager_vols[j];
+                char* n = pcurrent.nom;
+                char* p = pcurrent.prenom;
+                printf("| %10s | %10s |",n,p);
+            }
         }
     }
     printf("%d", i);
