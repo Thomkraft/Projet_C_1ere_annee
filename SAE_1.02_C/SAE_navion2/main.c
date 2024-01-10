@@ -61,7 +61,7 @@ int main()
             // Gestion d'une erreur de saisie
             choice = -1;  // R�initialise choice � une valeur non valide
         } else {
-            // Convertit la saisie en un entier
+            // Convertit la saisie en un entiers
             if (sscanf(buffer, "%d", &choice) != 1) {
                 // Gestion d'une erreur de conversion
                 choice = -1;  // R�initialise choice � une valeur non valide
