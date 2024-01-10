@@ -84,7 +84,8 @@ int main()
             recherche_panel(tabVols,nb_vols,heure);
             break;
         case 3:
-            //fonction d'affichge
+            //fonction d'affichage
+            affichage_passager(tabVols, nb_vols, heure);
             break;
         case 4:
             //fonction de changement d'heure
