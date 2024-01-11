@@ -14,68 +14,21 @@
  *
  * \author Guillaume F
 */
-// Fonction principale du tri fusion qui trie tab[l..r] en utilisant la fonction interclassement
-void tri_fusion(struct Vols* tab[], int l, int r) {
-    if (l < r) {
-        // identifie le milieu du tableau
-        int m = (l + r - 1) / 2;
+// Fonction tri par insertion
+void tri_insert(struct Vols* tab[], int n) {
+    int i, j;
+    struct Vols* k;
 
-        // Trie la premi�re et la deuxi�me moiti�
-        tri_fusion(tab, l, m);
-        printf("1 c good ");
-        tri_fusion(tab, m + 1, r);
-        printf("2 c good ");
-        printf("l : %d  m : %d  r : %d ", l,m,r);
+    for (i = 1; i < n; i++) {
+        k = tab[i];
+        j = i - 1;
 
-        // Fusionne les moiti�s tri�es
-        interclassement(tab, l, m, r);
-        printf("interclassement ok ");
-    }
-}
-
-// Fonction de fusion pour le tri fusion (modifi�e pour les structures Vols)
-void interclassement(struct Vols* tab[], int l, int m, int r) {
-    int i, j, k;
-    int n1 = m - l;
-    int n2 = r - m;
-
-    // Cr�e des tableaux temporaires
-    struct Vols* L[n1];
-    struct Vols* R[n2];
-
-    // Copie les donn�es dans les tableaux temporaires L[] et R[]
-    for (i = 0; i < n1; i++)
-        L[i] = tab[l + i];
-    for (j = 0; j < n2; j++)
-        R[j] = tab[m + 1 + j];
-
-    // Fusionne les tableaux temporaires dans tab[l..r]
-    i = 0;
-    j = 0;
-    k = l;
-    while (i < n1 && j < n2) {
-        if (L[i]->heure_decollage <= R[j]->heure_decollage) {
-            tab[k] = L[i];
-            i++;
-        } else {
-            tab[k] = R[j];
-            j++;
+        while (j >= 0 && k->heure_decollage < tab[j]->heure_decollage) {
+            tab[j + 1] = tab[j];
+            j = j - 1;
         }
-        k++;
-    }
 
-    // Copie les �l�ments restants de L[], s'il y en a
-    while (i < n1) {
-        tab[k] = L[i];
-        i++;
-        k++;
-    }
-
-    // Copie les �l�ments restants de R[], s'il y en a
-    while (j < n2) {
-        tab[k] = R[j];
-        j++;
-        k++;
+        tab[j + 1] = k;
     }
 }
 
@@ -147,7 +100,7 @@ void interclassementv2(struct Passager* tab[], int l, int m, int r) {
     }
 }
 
-//trie les passagers par ordre croissant sur le prix du billet 
+//trie les passagers par ordre croissant sur le prix du billet
 //si prix egale alors trie sur le nom
 void tri_prix_et_nom(struct Passager *passagers, int nombre_passagers) {
     int i, j;
