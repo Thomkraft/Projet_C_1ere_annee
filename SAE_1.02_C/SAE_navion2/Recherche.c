@@ -29,7 +29,6 @@ void recherche_comp(struct Vols tabVols[],int nbvols,char name_compagnie[],int h
     //Boucle pour tester chaque vols
     for(i=0;i<nbvols;i++) {
 
-        //faire une heure
 
         //Condition si le nom de compagnie du vol corresspond au nom de compagnie voulue alors on affiche les info du vol
         //( Heure de fin de débarquement dois etre supérieur a l'heure actuelle )
@@ -149,6 +148,7 @@ void recherche_heure_dec(struct Vols tabVols[],int nbvols,int heure_decollage) {
 
         //Condition si lheure de decollage est comprise +-1h de l'heure de décollage voulue alors on affiche les infos des vols
         // ( Heure de fin de débarquement dois etre supérieur a l'heure actuelle )
+        //+100 et -100 corespond a 1h en moins ou en plus
         if (heure_decollage-100 < tabVols[i].heure_decollage && tabVols[i].heure_decollage < heure_decollage+100) {
 
             //affiche les infos du vol

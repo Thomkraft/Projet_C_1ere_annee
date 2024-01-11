@@ -24,6 +24,8 @@ void affichage_passager(struct Vols tabVols[],int nbvols,int heure){
     int nb_affiche = 0;
     int annee,jour,mois;
 
+    int est_trie=0;
+
     int buffer[256];
 
     //demande du numero de salle d'embarquement
@@ -53,17 +55,22 @@ void affichage_passager(struct Vols tabVols[],int nbvols,int heure){
     printf("|    Nom     |    Prenom  |     Prix   |    Prix    |\n");
     printf("|------------|------------|------------|------------|\n");
 
-    //tri_selec(tabVols[vol_choisi-1].Passager_vols,tabVols[vol_choisi-1].nombre_passagers);
+    if(est_trie == 0){
+        for (i=0;i<nbvols;i++){
+            tri_prix_et_nom(&tabVols[i].Passager_vols,tabVols[i].nombre_passagers);
+        }
+    }
 
+    //regarde les vols 1 par 1 jusqu'a tomber sur le vol qui a le numéro de vols
     for(n=0;n<nbvols;n++){
         if (vol_choisi == tabVols[n].numero){
             for (i=0;i<j;i++){
 
                 sscanf(tabVols[n].Passager_vols[i].date_naissance,"%d/%d/%d", &jour,&mois,&annee);
 
-                if(annee > 2012){
+                if(annee > 2012 && tabVols[n].Passager_vols[i].prix !=0){
                     nb_affiche++;
-                    printf("| %10s | %10s | %10s | %7dans |\n",tabVols[n].Passager_vols[i].nom,tabVols[n].Passager_vols[i].prenom,tabVols[n].Passager_vols[i].prix,2024-annee);
+                    printf("| %10s | %10s | %10d | %7dans |\n",tabVols[n].Passager_vols[i].nom,tabVols[n].Passager_vols[i].prenom,tabVols[n].Passager_vols[i].prix,2024-annee);
                 }
             }
         }
@@ -71,14 +78,15 @@ void affichage_passager(struct Vols tabVols[],int nbvols,int heure){
     printf("|------------|------------|------------|------------|\n");
 
     for(n=0;n<nbvols;n++){
+
         if (vol_choisi == tabVols[n].numero){
             for (i=0;i<j;i++){
 
                 sscanf(tabVols[n].Passager_vols[i].date_naissance,"%d/%d/%d", &jour,&mois,&annee);
 
-                if(annee < 2012){
+                if(annee < 2012 && tabVols[n].Passager_vols[i].prix !=0){
                     nb_affiche++;
-                    printf("| %10s | %10s | %10s | %7dans |\n",tabVols[n].Passager_vols[i].nom,tabVols[n].Passager_vols[i].prenom,tabVols[n].Passager_vols[i].prix,2024-annee);
+                    printf("| %10s | %10s | %10d | %7dans |\n",tabVols[n].Passager_vols[i].nom,tabVols[n].Passager_vols[i].prenom,tabVols[n].Passager_vols[i].prix,2024-annee);
                 }
             }
         }

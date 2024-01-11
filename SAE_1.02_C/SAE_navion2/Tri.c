@@ -147,30 +147,22 @@ void interclassementv2(struct Passager* tab[], int l, int m, int r) {
     }
 }
 
-void tri_selec(struct Passager tableau_passagers[],int nombre_passagers){
+//trie les passagers par ordre croissant sur le prix du billet 
+//si prix egale alors trie sur le nom
+void tri_prix_et_nom(struct Passager *passagers, int nombre_passagers) {
+    int i, j;
+    struct Passager temp;
 
-    int i=0;
-    int j=0;
-    int min = 0;
-    struct Passager tmp;
+    for (i = 1; i < nombre_passagers; i++) {
+        temp = passagers[i];
+        j = i - 1;
 
-    while(i < nombre_passagers-1) {
-        min = i;
-        j = i+1;
-
-        while (j < nombre_passagers){
-            if(tableau_passagers[j].prix < tableau_passagers[min].prix) {
-                min = j;
-
-            }
-            j = j+1;
+        // Trie par prix et par nom en cas d'égalité de prix
+        while (j >= 0 && (passagers[j].prix > temp.prix || (passagers[j].prix == temp.prix && strcmp(passagers[j].nom, temp.nom) > 0))) {
+            passagers[j + 1] = passagers[j];
+            j = j - 1;
         }
 
-        tmp = tableau_passagers[i];
-        tableau_passagers[i] = tableau_passagers[min];
-        tableau_passagers[min] = tmp;
-        i = i+1;
-        
+        passagers[j + 1] = temp;
     }
-
-};
+}

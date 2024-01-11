@@ -21,7 +21,6 @@
 int get_excl(struct Vols tabVols[],int* nb_vols) {
 
     //definition des differentes variables et pointeurs
-    //char* nom_fichier="./data_vols.csv";
     char nom_fichier[100];
     FILE* pointeur_de_fichier = NULL;
     char * charactere_lu;
@@ -36,12 +35,15 @@ int get_excl(struct Vols tabVols[],int* nb_vols) {
     char liste_passager_all[400][500];
 
     int lignes = 0;
-    int collonnes = 0;
-
 
 
     printf("Entrez le nom du fichier csv contenant les donnees des vols (0=data_vols.csv): ");
-    scanf("%s", nom_fichier);
+
+    //recupere le nom du fichier
+    fgets(nom_fichier, sizeof(nom_fichier), stdin);
+
+    //remplace le "\n" par "\0"
+    nom_fichier[strcspn(nom_fichier, "\n")] = '\0';
 
     //verification si on utilise le fichier par defaut ou non
     if(nom_fichier[0] == '0')
@@ -97,7 +99,7 @@ int get_excl(struct Vols tabVols[],int* nb_vols) {
                 while (passagerToken != NULL) {
 
                     //Coupe les informations d'un passager
-                    sscanf(passagerToken, "%[^,],%[^,],%[^,],%d,%s",
+                    sscanf(passagerToken, "%[^,],%[^,],%[^,],%d,%d",
 
                     //stock dans la structure passager les information du passager Y pour le vol X
                     //Car il y a plusieurs passagers pour le vol X
@@ -129,7 +131,7 @@ int get_excl(struct Vols tabVols[],int* nb_vols) {
         fclose(pointeur_de_fichier);
 
         //verifie si le fichier contient des vols ou uniquement le bandereau d'information
-        if(lignes <= 1){
+        if(lignes < 1){
             printf("Votre fichier ne contient aucun vols ! \n");
             return 0;
         }
