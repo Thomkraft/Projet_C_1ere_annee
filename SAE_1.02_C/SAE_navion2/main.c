@@ -29,14 +29,19 @@ int main()
 
     int buffer[256];
 
-
     int* pt_nb_vols = &nb_vols;
+
+    int verif;
 
     //Definition du tableau de structure tabVols
     struct Vols tabVols[40];
 
     //Appel de la fonction proc�dur get_excel pour remplir le tableau de structure
-    get_excl(tabVols,pt_nb_vols);
+    verif = get_excl(tabVols,pt_nb_vols);
+
+    if (verif == 0){
+        return 0;
+    }
 
 
     //Boucle pour choisir l'option voulue

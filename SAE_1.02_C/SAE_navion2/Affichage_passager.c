@@ -84,6 +84,10 @@ void affichage_passager(struct Vols tabVols[],int nbvols,int heure){
         }
     }
 
+    if (nb_affiche == 0){
+        printf("Il n'y a pas de passager dans ce vol !");
+    }
+
     printf("-----------------------------------------------------\n");
 
 

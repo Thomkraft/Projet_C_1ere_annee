@@ -18,10 +18,11 @@
 
 
 //declaration de la fonction procedure
-void get_excl(struct Vols tabVols[],int* nb_vols) {
+int get_excl(struct Vols tabVols[],int* nb_vols) {
 
     //definition des differentes variables et pointeurs
-    char* nom_fichier="./data_vols.csv";
+    //char* nom_fichier="./data_vols.csv";
+    char nom_fichier[100];
     FILE* pointeur_de_fichier = NULL;
     char * charactere_lu;
 
@@ -37,13 +38,25 @@ void get_excl(struct Vols tabVols[],int* nb_vols) {
     int lignes = 0;
     int collonnes = 0;
 
+
+
+    printf("Entrez le nom du fichier csv contenant les donnees des vols (0=data_vols.csv): ");
+    scanf("%s", nom_fichier);
+
+    //verification si on utilise le fichier par defaut ou non
+    if(nom_fichier[0] == '0')
+    {
+        strcpy(nom_fichier, "data_vols.csv");
+    }
+
     //ouverture du fichier data_vols.csv
     pointeur_de_fichier = fopen(nom_fichier, "r");
 
     //Verification si erreur lors de l'ouverture du fichier
     if (pointeur_de_fichier == NULL) {
-        printf("\nL'ouverture du fichier en lecture du fichier %s a echoue. \n",nom_fichier);
-    } else {
+        printf("\nL'ouverture du fichier %s a echoue. \n",nom_fichier);
+        return 0;
+        } else {
 
         //Saute la 1ere ligne du fichier pour eviter de remplir notre structure avec les noms des collonnes
         if (fgets(contenue,sizeof(contenue),pointeur_de_fichier) == NULL) {
@@ -114,6 +127,14 @@ void get_excl(struct Vols tabVols[],int* nb_vols) {
 
         //ferme le fichier
         fclose(pointeur_de_fichier);
+
+        //verifie si le fichier contient des vols ou uniquement le bandereau d'information
+        if(lignes <= 1){
+            printf("Votre fichier ne contient aucun vols ! \n");
+            return 0;
+        }
+        return 1;
     }
 
+return 1;
 }

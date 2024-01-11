@@ -58,7 +58,7 @@ struct Vols{
 };
 
 //Declaration des differentes fonction du programme
-void get_excl(struct Vols[],int*);
+int get_excl(struct Vols[],int*);
 void recherche_comp(struct Vols[],int,char[],int);
 void recherche_dest(struct Vols[],int,char[],int);
 void recherche_heure_dec(struct Vols[],int,int);
