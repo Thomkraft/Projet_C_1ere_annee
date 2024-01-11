@@ -19,10 +19,11 @@ void tri_insert(struct Vols* tab[], int n) {
     int i, j;
     struct Vols* k;
 
+    //Parcours les éléments du tableau
     for (i = 1; i < n; i++) {
         k = tab[i];
         j = i - 1;
-
+        //recherche du terme de l'occurence i
         while (j >= 0 && k->heure_decollage < tab[j]->heure_decollage) {
             tab[j + 1] = tab[j];
             j = j - 1;
