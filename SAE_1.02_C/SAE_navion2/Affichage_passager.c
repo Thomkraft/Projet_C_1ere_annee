@@ -18,6 +18,7 @@
 void affichage_passager(struct Vols tabVols[],int nbvols,int heure){
     //Declaration de mes variables
     int vol_choisi;
+    int nb_dernier_vol;
     int i=0;
     int j = 0;
     int n=0;
@@ -28,10 +29,12 @@ void affichage_passager(struct Vols tabVols[],int nbvols,int heure){
 
     int buffer[256];
 
+    //recherche du numéro de vol le plus élevé
+    nb_dernier_vol = max(tabVols, nbvols);
+
     //demande du numero de salle d'embarquement
     do{
         printf("Entrer le numero du vol : ");
-      //  scanf("%d",&vol_choisi);
 
         if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
         // Gestion d'une erreur de saisie
@@ -43,13 +46,12 @@ void affichage_passager(struct Vols tabVols[],int nbvols,int heure){
                 vol_choisi = -1;  // R�initialise choice � une valeur non valide
             }
         }
-    }while(vol_choisi < 0 || vol_choisi > nbvols);
+    }while(vol_choisi < 0 || vol_choisi > nb_dernier_vol);
 
-    j = tabVols[vol_choisi-1].nombre_passagers;
+    j = tabVols[vol_choisi - 1].nombre_passagers;
 
     // Lecture de la ligne d'entr�e
 
-    //printf("%d",tabVols[vol_choisi-1].nombre_passagers);
     //affichage
     printf("|------------|------------|------------|------------|\n");
     printf("|    Nom     |    Prenom  |     Prix   |    Prix    |\n");
@@ -63,6 +65,7 @@ void affichage_passager(struct Vols tabVols[],int nbvols,int heure){
 
     //regarde les vols 1 par 1 jusqu'a tomber sur le vol qui a le numéro de vols
     for(n=0;n<nbvols;n++){
+            printf("%d \n",tabVols[n].numero);
         if (vol_choisi == tabVols[n].numero){
             for (i=0;i<j;i++){
 
@@ -99,4 +102,19 @@ void affichage_passager(struct Vols tabVols[],int nbvols,int heure){
     printf("-----------------------------------------------------\n");
 
 
+}
+
+int max(struct Vols tabVols[],int nbvols)
+{
+    int max = tabVols[0].numero;
+    int i = 0;
+
+    for(i=0;i<nbvols;i++)
+    {
+        if(max < tabVols[i].numero)
+        {
+            max = tabVols[i].numero;
+        }
+    }
+    return max;
 }
