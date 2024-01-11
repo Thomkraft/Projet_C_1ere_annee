@@ -9,7 +9,7 @@
 #include "main.h"
 
 /**
- * \fn Fonction procdure tri_fusion, interclassement()
+ * \fn Fonction procedure tri_insert ()
  * \brief tri les vols par ordre de d�collage
  *
  * \author Guillaume F
