@@ -63,15 +63,8 @@ void recherche_comp(struct Vols[],int,char[],int);
 void recherche_dest(struct Vols[],int,char[],int);
 void recherche_heure_dec(struct Vols[],int,int);
 void recherche_panel(struct Vols[],int,int);
-void affichage_par_vol(struct Vols[] ,int);
 int saisi_heure(int);
 void affichage_vol(struct Vols[], int, int);
 int convertisseur_minutes(int);
 void tri_insert(struct Vols* tab[], int n);
-
-
-void tri_prix(struct Passager[],int);
-void interclassement_prix(struct Passager*[],int, struct Passager*[],int);
-void tri_selec(struct Passager [],int);
-
 void tri_prix_et_nom(struct Passager*,int);

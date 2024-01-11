@@ -39,6 +39,7 @@ int main()
     //Appel de la fonction proc�dur get_excel pour remplir le tableau de structure
     verif = get_excl(tabVols,pt_nb_vols);
 
+    //si get_excel a échouer alors terminer le programme sinon continuer
     if (verif == 0){
         return 0;
     }
