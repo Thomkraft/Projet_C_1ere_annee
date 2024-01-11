@@ -1,7 +1,7 @@
 /**
  * \file affichage_passager.c
  * \brief
- * \author Aurelien P, Thomas K, Guillaume F
+ * \author Aurelien P, Thomas K
  * \version 1.0
  * \date 02/01/24
 */
