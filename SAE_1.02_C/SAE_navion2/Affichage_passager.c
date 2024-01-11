@@ -1,7 +1,7 @@
 /**
  * \file affichage_passager.c
  * \brief
- * \author Aurelien P
+ * \author Aurelien P, Thomas K, Guillaume F
  * \version 1.0
  * \date 02/01/24
 */
@@ -12,82 +12,79 @@
  * \fn Fonction procedure affichage_passager()
  * \brief affiche les listes de passager par terminaux
  *
- * \author Aurelien P
+ * \author Aurelien P, Thomas K
 */
 
 void affichage_passager(struct Vols tabVols[],int nbvols,int heure){
     //Declaration de mes variables
-    int salle_emb;
-    int i,j,num_vols;
+    int vol_choisi;
+    int i=0;
+    int j = 0;
+    int n=0;
+    int nb_affiche = 0;
+    int annee,jour,mois;
+
+    int buffer[256];
 
     //demande du numero de salle d'embarquement
     do{
-        printf("Entrer le numero de salle d'embarquement : ");
-        scanf("%d",&salle_emb);
-    }while(salle_emb < 0 || salle_emb > 6);
+        printf("Entrer le numero du vol : ");
+      //  scanf("%d",&vol_choisi);
 
-    //declaration d'un tableau de pointeur des vols effectuant leurs embarquements dans la salle demandé
-    struct Vols* tabvols_salles[100];
-    //declaration d'un tableau de pointeur des vols effectuant leurs embarquements dans la salle demandé
-    struct Passager* tabvols_passa[100];
-    j=0;
-    //tri des vols en fonction de leurs salle d'embarquement
-    for (i=0;i<nbvols;i++)
-    {
-        if(tabVols[i].salle_embarquement == salle_emb)
-        {
-            tabvols_salles[j++] = &tabVols[i];
+        if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
+        // Gestion d'une erreur de saisie
+        vol_choisi = -1;  // Rï¿½initialise choice ï¿½ une valeur non valide
+        } else {
+            // Convertit la saisie en un entiers
+            if (sscanf(buffer, "%d", &vol_choisi) != 1) {
+                // Gestion d'une erreur de conversion
+                vol_choisi = -1;  // Rï¿½initialise choice ï¿½ une valeur non valide
+            }
         }
-    }
-    //tri des vols en fonction de l'heure
-     printf("ghjk");
-    tri_fusion(tabvols_salles,0,j+1);
-    printf("%d",j);
-    //recherche du prochain vol à embarquer
-    for(i=0;i<j-1;i++)
-    {
-        if(heure<=tabvols_salles[i]->debut_embarquement && heure>tabvols_salles[i+1]->debut_embarquement)
-        {
-            num_vols = tabvols_salles[i+1]->numero;
-            printf(" affichage UWU %d" ,num_vols);
-        }
-    }
+    }while(vol_choisi < 0 || vol_choisi > nbvols);
 
-    j=0;
-    for (i=0;i<nbvols;i++)
-    {
-        if (tabVols[i].numero == num_vols)
-        {
-            tabvols_passa[j++] = tabVols[i].Passager_vols;
-        }
-    }
+    j = tabVols[vol_choisi-1].nombre_passagers;
 
-    //tri des passager du vols par date de naissance
-    tri_fusionv2(tabvols_passa,0,j-1);
+    // Lecture de la ligne d'entrï¿½e
 
+    //printf("%d",tabVols[vol_choisi-1].nombre_passagers);
     //affichage
-    printf("|--------------|\n");
-    printf("| Nom | Prenom |\n");
-    printf("|--------------|\n");
+    printf("|------------|------------|------------|------------|\n");
+    printf("|    Nom     |    Prenom  |     Prix   |    Prix    |\n");
+    printf("|------------|------------|------------|------------|\n");
 
-    i=0;
+    //tri_selec(tabVols[vol_choisi-1].Passager_vols,tabVols[vol_choisi-1].nombre_passagers);
 
-    for (i=0;i<40;i++)
-    {
-        //printf("%d (%d) ",tabVols[i].numero,num_vols);
-        if (tabVols[i].numero == num_vols)
-        {
+    for(n=0;n<nbvols;n++){
+        if (vol_choisi == tabVols[n].numero){
+            for (i=0;i<j;i++){
 
-            Vols current = tabVols[i];
-            printf("%d",current.numero);
-            for (j=0;j<40;j++)
-            {
-                Passager pcurrent = current.Passager_vols[j];
-                char* n = pcurrent.nom;
-                char* p = pcurrent.prenom;
-                printf("| %10s | %10s |",n,p);
+                sscanf(tabVols[n].Passager_vols[i].date_naissance,"%d/%d/%d", &jour,&mois,&annee);
+
+                if(annee > 2012){
+                    nb_affiche++;
+                    printf("| %10s | %10s | %10s | %7dans |\n",tabVols[n].Passager_vols[i].nom,tabVols[n].Passager_vols[i].prenom,tabVols[n].Passager_vols[i].prix,2024-annee);
+                }
             }
         }
     }
-    printf("%d", i);
+    printf("|------------|------------|------------|------------|\n");
+
+    for(n=0;n<nbvols;n++){
+        if (vol_choisi == tabVols[n].numero){
+            for (i=0;i<j;i++){
+
+                sscanf(tabVols[n].Passager_vols[i].date_naissance,"%d/%d/%d", &jour,&mois,&annee);
+
+                if(annee < 2012){
+                    nb_affiche++;
+                    printf("| %10s | %10s | %10s | %7dans |\n",tabVols[n].Passager_vols[i].nom,tabVols[n].Passager_vols[i].prenom,tabVols[n].Passager_vols[i].prix,2024-annee);
+                }
+            }
+        }
+    }
+
+    printf("-----------------------------------------------------\n");
+
+
 }

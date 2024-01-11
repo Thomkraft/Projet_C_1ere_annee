@@ -70,3 +70,8 @@ void tri_fusion(struct Vols* [], int, int);
 void interclassement(struct Vols* [], int, int, int);
 void tri_fusionv2(struct Passager* [], int, int);
 void interclassementv2(struct Passager* [], int, int, int);
+
+
+void tri_prix(struct Passager[],int);
+void interclassement_prix(struct Passager[],int, struct Passager[],int);
+void tri_selec(struct Passager [],int);

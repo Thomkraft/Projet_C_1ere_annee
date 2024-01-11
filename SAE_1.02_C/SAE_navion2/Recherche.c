@@ -29,6 +29,8 @@ void recherche_comp(struct Vols tabVols[],int nbvols,char name_compagnie[],int h
     //Boucle pour tester chaque vols
     for(i=0;i<nbvols;i++) {
 
+        //faire une heure
+
         //Condition si le nom de compagnie du vol corresspond au nom de compagnie voulue alors on affiche les info du vol
         //( Heure de fin de débarquement dois etre supérieur a l'heure actuelle )
         if (strcmp(tabVols[i].compagnie, name_compagnie) == 0 && tabVols[i].fin_embarquement > heure) {
@@ -134,14 +136,8 @@ void recherche_heure_dec(struct Vols tabVols[],int nbvols,int heure_decollage) {
 
     int retard = 0;
 
-    int heures_retard;
-    int minutes_retard;
     int heures;
     int minutes;
-    int limite_basse;
-    int limite_haute;
-
-    int heure_decollage_vols;
 
     //Affichage de la banderole
     printf("Affichage des vols qui décollent dans +- 30min de %d\n",heure_decollage);
@@ -151,34 +147,9 @@ void recherche_heure_dec(struct Vols tabVols[],int nbvols,int heure_decollage) {
 
     for(i=0;i<nbvols;i++) {
 
-        //Verification que par exemple 17h00 -20min = 16h40 et non 16h80
-        if ((heure_decollage-30) % 100 >= 60) {
-            heures = (heure_decollage-30) / 100;
-            minutes = (heure_decollage-30) % 100;
-
-            minutes = 60 - (minutes % 60);
-
-            limite_basse = heures * 100 + minutes;
-        }else{
-            limite_basse = heure_decollage - 30;
-        };
-
-        if ((heure_decollage+30) % 100 >= 60) {
-            heures = (heure_decollage+30) / 100;
-            minutes = (heure_decollage+30) % 100;
-
-            heures = heures + 1;
-            minutes = minutes - 60;
-
-            limite_haute = heures * 100 + minutes;
-        }else{
-            limite_haute = heure_decollage + 30;
-        };
-
-
-        //Condition si lheure de decollage est comprise +-30 de l'heure de décollage voulue alors on affiche les infos des vols
+        //Condition si lheure de decollage est comprise +-1h de l'heure de décollage voulue alors on affiche les infos des vols
         // ( Heure de fin de débarquement dois etre supérieur a l'heure actuelle )
-        if (limite_basse < tabVols[i].heure_decollage && tabVols[i].heure_decollage < limite_haute) {
+        if (heure_decollage-100 < tabVols[i].heure_decollage && tabVols[i].heure_decollage < heure_decollage+100) {
 
             //affiche les infos du vol
             printf("| %2d | %20s | %20s | %7d | %7d | %7d | %9d | %7d | %7d | %8d | %20s |\n",

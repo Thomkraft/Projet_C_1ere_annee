@@ -10,7 +10,7 @@
 
 /**
  * \fn Fonction procdure tri_fusion, interclassement()
- * \brief tri les vols par ordre de décollage
+ * \brief tri les vols par ordre de dï¿½collage
  *
  * \author Guillaume F
 */
@@ -20,30 +20,30 @@ void tri_fusion(struct Vols* tab[], int l, int r) {
         // identifie le milieu du tableau
         int m = (l + r - 1) / 2;
 
-        // Trie la première et la deuxième moitié
+        // Trie la premiï¿½re et la deuxiï¿½me moitiï¿½
         tri_fusion(tab, l, m);
         printf("1 c good ");
         tri_fusion(tab, m + 1, r);
         printf("2 c good ");
         printf("l : %d  m : %d  r : %d ", l,m,r);
 
-        // Fusionne les moitiés triées
+        // Fusionne les moitiï¿½s triï¿½es
         interclassement(tab, l, m, r);
         printf("interclassement ok ");
     }
 }
 
-// Fonction de fusion pour le tri fusion (modifiée pour les structures Vols)
+// Fonction de fusion pour le tri fusion (modifiï¿½e pour les structures Vols)
 void interclassement(struct Vols* tab[], int l, int m, int r) {
     int i, j, k;
     int n1 = m - l;
     int n2 = r - m;
 
-    // Crée des tableaux temporaires
+    // Crï¿½e des tableaux temporaires
     struct Vols* L[n1];
     struct Vols* R[n2];
 
-    // Copie les données dans les tableaux temporaires L[] et R[]
+    // Copie les donnï¿½es dans les tableaux temporaires L[] et R[]
     for (i = 0; i < n1; i++)
         L[i] = tab[l + i];
     for (j = 0; j < n2; j++)
@@ -64,14 +64,14 @@ void interclassement(struct Vols* tab[], int l, int m, int r) {
         k++;
     }
 
-    // Copie les éléments restants de L[], s'il y en a
+    // Copie les ï¿½lï¿½ments restants de L[], s'il y en a
     while (i < n1) {
         tab[k] = L[i];
         i++;
         k++;
     }
 
-    // Copie les éléments restants de R[], s'il y en a
+    // Copie les ï¿½lï¿½ments restants de R[], s'il y en a
     while (j < n2) {
         tab[k] = R[j];
         j++;
@@ -92,26 +92,26 @@ void tri_fusionv2(struct Passager* tab[], int l, int r) {
         // identifie le milieu du tableau
         int m = (l + r - 1) / 2;
 
-        // Trie la première et la deuxième moitié
+        // Trie la premiï¿½re et la deuxiï¿½me moitiï¿½
         tri_fusionv2(tab, l, m);
         tri_fusionv2(tab, m + 1, r);
 
-        // Fusionne les moitiés triées
+        // Fusionne les moitiï¿½s triï¿½es
         interclassementv2(tab, l, m, r);
     }
 }
 
-// Fonction de fusion pour le tri fusion (modifiée pour les structures Vols)
+// Fonction de fusion pour le tri fusion (modifiï¿½e pour les structures Vols)
 void interclassementv2(struct Passager* tab[], int l, int m, int r) {
     int i, j, k;
     int n1 = m - l + 1;
     int n2 = r - m;
 
-    // Crée des tableaux temporaires
+    // Crï¿½e des tableaux temporaires
     struct Passager* L[n1];
     struct Passager* R[n2];
 
-    // Copie les données dans les tableaux temporaires L[] et R[]
+    // Copie les donnï¿½es dans les tableaux temporaires L[] et R[]
     for (i = 0; i < n1; i++)
         L[i] = tab[l + i];
     for (j = 0; j < n2; j++)
@@ -132,14 +132,14 @@ void interclassementv2(struct Passager* tab[], int l, int m, int r) {
         k++;
     }
 
-    // Copie les éléments restants de L[], s'il y en a
+    // Copie les ï¿½lï¿½ments restants de L[], s'il y en a
     while (i < n1) {
         tab[k] = L[i];
         i++;
         k++;
     }
 
-    // Copie les éléments restants de R[], s'il y en a
+    // Copie les ï¿½lï¿½ments restants de R[], s'il y en a
     while (j < n2) {
         tab[k] = R[j];
         j++;
@@ -147,70 +147,30 @@ void interclassementv2(struct Passager* tab[], int l, int m, int r) {
     }
 }
 
+void tri_selec(struct Passager tableau_passagers[],int nombre_passagers){
 
-void interclassement_prix(struct Passager tableau_passagersA[], const int nombre_passagersA, struct Passager tableau_passagersB[], const int nombre_passagersB)
-{
-    int i = 0, j = 0, k = 0;
+    int i=0;
+    int j=0;
+    int min = 0;
+    struct Passager tmp;
 
-    // TODO enzo nom explicites et propres
-    const int sizetab = nombre_passagersA + nombre_passagersB;
-    // TODO enzo to test
-    struct Passager tab_final[sizetab];
-    //struct Passager *tab_final = (struct Passager *)malloc(sizetab * sizeof(struct Passager));
+    while(i < nombre_passagers-1) {
+        min = i;
+        j = i+1;
 
-    while (i < nombre_passagersA && j < nombre_passagersB)
-    {
-        // TODO enzo tri du plus tot au plus tard et du plus cher au moins cher
-       if ((tableau_passagersA[i].prix > tableau_passagersB[j].prix)
-            || (tableau_passagersA[i].prix == tableau_passagersB[j].prix && tableau_passagersA[i].nom >= tableau_passagersB[j].nom))
+        while (j < nombre_passagers){
+            if(tableau_passagers[j].prix < tableau_passagers[min].prix) {
+                min = j;
 
-        //if (tableau_passagersA[i].prix_billet >= tableau_passagersB[j].prix_billet)
-
-        {
-            tab_final[k] = tableau_passagersA[i];
-            i++;
+            }
+            j = j+1;
         }
-        else
-        {
-            tab_final[k] = tableau_passagersB[j];
-            j++;
-        }
-        k++;
+
+        tmp = tableau_passagers[i];
+        tableau_passagers[i] = tableau_passagers[min];
+        tableau_passagers[min] = tmp;
+        i = i+1;
+        
     }
 
-    while (i < nombre_passagersA)
-    {
-        tab_final[k] = tableau_passagersA[i];
-        i++;
-        k++;
-    }
-
-    while (j < nombre_passagersB)
-    {
-        tab_final[k] = tableau_passagersB[j];
-        j++;
-        k++;
-    }
-
-    for (int i = 0; i < sizetab; i++)
-    {
-        tableau_passagersA[i] = tab_final[i];
-    }
-
-    //free(tab_final);
-}
-
-
-void tri_prix(struct Passager tableau_passagers[], const int nombre_passagers)
-{
-    if (nombre_passagers > 1)
-    {
-        const int nombre_passagersA = nombre_passagers / 2;
-        const int nombre_passagersB = nombre_passagers - nombre_passagersA;
-
-        tri_prix(tableau_passagers, nombre_passagersA);
-        tri_prix(tableau_passagers + nombre_passagersA, nombre_passagersB);
-
-        interclassement_prix(tableau_passagers, nombre_passagersA, tableau_passagers + nombre_passagersA, nombre_passagersB);
-    }
-}
+};
