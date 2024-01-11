@@ -68,3 +68,4 @@ void affichage_vol(struct Vols[], int, int);
 int convertisseur_minutes(int);
 void tri_insert(struct Vols* tab[], int n);
 void tri_prix_et_nom(struct Passager*,int);
+void affichage_passager(struct Vols[],int,int);
