@@ -133,13 +133,8 @@ void recherche_heure_dec(struct Vols tabVols[],int nbvols,int heure_decollage) {
     int i;
     int j = 0;
 
-    int retard = 0;
-
-    int heures;
-    int minutes;
-
     //Affichage de la banderole
-    printf("Affichage des vols qui décollent dans +- 30min de %d\n",heure_decollage);
+    printf("Affichage des vols qui décollent dans +- 1h de %d\n",heure_decollage);
     printf("----------------------------------------------------------------------------------------------------------------------------------------------------\n");
     printf("| No |       Compagnie      |      Destination     | No comp | deb enr | fin enr | salle emb | deb emb | fin emb | Heur dec |       etat vols      |\n");
     printf("----------------------------------------------------------------------------------------------------------------------------------------------------\n");

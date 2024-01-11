@@ -75,3 +75,5 @@ void interclassementv2(struct Passager* [], int, int, int);
 void tri_prix(struct Passager[],int);
 void interclassement_prix(struct Passager*[],int, struct Passager*[],int);
 void tri_selec(struct Passager [],int);
+
+void tri_prix_et_nom(struct Passager*,int);

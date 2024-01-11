@@ -23,11 +23,7 @@ int get_excl(struct Vols tabVols[],int* nb_vols) {
     //definition des differentes variables et pointeurs
     char nom_fichier[100];
     FILE* pointeur_de_fichier = NULL;
-    char * charactere_lu;
-
-
-    int nb_ligne = 0;
-    int i;
+    //char * charactere_lu;
 
     char contenue[NB_ELEMENT];
 
@@ -59,6 +55,7 @@ int get_excl(struct Vols tabVols[],int* nb_vols) {
         printf("\nL'ouverture du fichier %s a echoue. \n",nom_fichier);
         return 0;
         } else {
+
 
         //Saute la 1ere ligne du fichier pour eviter de remplir notre structure avec les noms des collonnes
         if (fgets(contenue,sizeof(contenue),pointeur_de_fichier) == NULL) {
