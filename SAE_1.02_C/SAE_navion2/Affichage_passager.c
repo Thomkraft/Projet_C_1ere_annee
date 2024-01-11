@@ -78,6 +78,7 @@ void affichage_passager(struct Vols tabVols[],int nbvols,int heure){
 
                 sscanf(tabVols[n].Passager_vols[i].date_naissance,"%d/%d/%d", &jour,&mois,&annee);
 
+            //affichage des moins de 12 ans
                 if(annee > 2012 && tabVols[n].Passager_vols[i].prix !=0){
                     nb_affiche++;
                     printf("| %10s | %10s | %10d | %7dans |\n",tabVols[n].Passager_vols[i].nom,tabVols[n].Passager_vols[i].prenom,tabVols[n].Passager_vols[i].prix,2024-annee);
@@ -93,6 +94,7 @@ void affichage_passager(struct Vols tabVols[],int nbvols,int heure){
 
                 sscanf(tabVols[n].Passager_vols[i].date_naissance,"%d/%d/%d", &jour,&mois,&annee);
 
+            // affichage des autres passager
                 if(annee < 2012 && tabVols[n].Passager_vols[i].prix !=0){
                     nb_affiche++;
                     printf("| %10s | %10s | %10d | %7dans |\n",tabVols[n].Passager_vols[i].nom,tabVols[n].Passager_vols[i].prenom,tabVols[n].Passager_vols[i].prix,2024-annee);
@@ -110,6 +112,7 @@ void affichage_passager(struct Vols tabVols[],int nbvols,int heure){
 
 }
 
+//recherche du numéro du vol le plus haut
 int max(struct Vols tabVols[],int nbvols)
 {
     int max = tabVols[0].numero;
