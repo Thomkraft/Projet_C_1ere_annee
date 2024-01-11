@@ -10,10 +10,17 @@
 
 /**
  * \fn Fonction saisi_heure()
- * \brief Changer l'heure au format hhmm
+ * \brief Changer l'heure au format hhmm/convertiseur heure en minute
  *
  * \author Guillaume F
 */
+
+int convertisseur_minutes(int hhmm){
+    int heures_hhmm = hhmm / 100;   // Extraire les heures
+    int minutes_hhmm = hhmm % 100;  // Extraire les minutes
+    int temps_total_en_minutes = heures_hhmm * 60 + minutes_hhmm;
+    return temps_total_en_minutes;
+    }
 
 int saisi_heure(int h) {
     int heure, choice;
